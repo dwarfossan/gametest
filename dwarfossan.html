@@ -1524,11 +1524,15 @@ function rItems() {
 function rEquip() {
   const p = G.player; const panel = document.getElementById('panel-content'); if (!p) return;
   const slots = {weapon:'武器', offhand:'副手', armor:'裝甲'};
+  const blessDesc2 = { doubleAtk:'連擊', reflect:'反彈傷害', regen:'每回合回血' };
   let h = '';
   for (const [sl, lb] of Object.entries(slots)) {
     const eid = p.eq[sl];
- const it = eid ? EQS[eid] : null;
-    h += `<div class="eqr"><span class="esl">${lb}</span><span class="ei">${it?it.name:'—'}</span>${it?`<button class="erm" onclick="unequip('${sl}')">卸除</button>`:''}</div>`;
+    const it = eid ? EQS[eid] : null;
+    const baseName = it ? (it.blessed ? it.name.replace(/^✦/,'') : it.name) : '—';
+    const blessTag = it && it.blessed ? `<span style="color:var(--gold);font-weight:700;">（${blessDesc2[it.blessed]||'祝福'}）</span>` : '';
+    const nameHtml = it && it.blessed ? `<span style="color:var(--gold);font-weight:700;">祝福的${baseName}</span>${blessTag}` : baseName;
+    h += `<div class="eqr"><span class="esl">${lb}</span><span class="ei">${nameHtml}</span>${it?`<button class="erm" onclick="unequip('${sl}')">卸除</button>`:''}</div>`;
   }
   panel.innerHTML = h;
 }
@@ -2625,11 +2629,12 @@ async function cact(action) {
             let kills1a = 0;
             for (const en of ae1) {
               const eRoll = dr(20);
-              if (eRoll < c1.skill) {
-                const dmg = Math.max(1, c1.skill); en.hp = Math.max(0, en.hp - dmg);
-                cl2(`${en.name} 骰出 ${eRoll}（需≥${c1.skill}），被旋風斬中！受到 ${dmg} 點傷害！`,'dmg'); ftxEn('-'+dmg,'r',en.id);
+              const keen1s = G.combat.keenBuff > 0 ? 5 : 0;
+              if (eRoll < pSkill + keen1s) {
+                const dmg = Math.max(1, pSkill); en.hp = Math.max(0, en.hp - dmg);
+                cl2(`${en.name} 骰出 ${eRoll} vs 閾值${pSkill+keen1s}，被旋風斬中！受到 ${dmg} 點傷害！`,'dmg'); ftxEn('-'+dmg,'r',en.id);
                 if (en.hp <= 0) kills1a++;
-              } else { cl2(`${en.name} 骰出 ${eRoll}，躲開了旋風斬！`); ftxEn('閃','m',en.id); }
+              } else { cl2(`${en.name} 骰出 ${eRoll} vs 閾值${pSkill+keen1s}，躲開了旋風斬！`); ftxEn('閃','m',en.id); }
             }
             if (kills1a > 0) { ae1.filter(e=>e.hp<=0).forEach(e=>{sl(`${e.name} 被斬倒了！`);G.player.exp+=e.exp;G.player.gp+=e.gp;}); lili('edie'); }
             await wt(400); rEnemies(G.combat.enemies); updateBars();
@@ -2664,11 +2669,12 @@ async function cact(action) {
             let kills1b = 0;
             for (const en of ae1) {
               const eRoll = dr(20);
-              if (eRoll < c1.skill) {
-                const dmg = Math.max(1, c1.skill); en.hp = Math.max(0, en.hp - dmg);
-                cl2(`${en.name} 骰出 ${eRoll}（需≥${c1.skill}），被火球命中！受到 ${dmg} 點傷害！`,'dmg'); ftxEn('-'+dmg,'r',en.id);
+              const keen1f = G.combat.keenBuff > 0 ? 5 : 0;
+              if (eRoll < pSkill + keen1f) {
+                const dmg = Math.max(1, pSkill); en.hp = Math.max(0, en.hp - dmg);
+                cl2(`${en.name} 骰出 ${eRoll} vs 閾值${pSkill+keen1f}，被火球命中！受到 ${dmg} 點傷害！`,'dmg'); ftxEn('-'+dmg,'r',en.id);
                 if (en.hp <= 0) kills1b++;
-              } else { cl2(`${en.name} 骰出 ${eRoll}，閃過了火球！`); ftxEn('閃','m',en.id); }
+              } else { cl2(`${en.name} 骰出 ${eRoll} vs 閾值${pSkill+keen1f}，閃過了火球！`); ftxEn('閃','m',en.id); }
             }
             if (kills1b > 0) { ae1.filter(e=>e.hp<=0).forEach(e=>{sl(`${e.name} 被火球燒盡了！`);G.player.exp+=e.exp;G.player.gp+=e.gp;}); lili('edie'); }
             await wt(400); rEnemies(G.combat.enemies); updateBars();
@@ -2678,9 +2684,14 @@ async function cact(action) {
           } else {
             // 一般攻擊型技能
             const keenBonus = G.combat.keenBuff > 0 ? 5 : 0;
-            const r = dr(20); const tot = r + pSkill + keenBonus;
+            let r, rollText;
+            if (G.combat.luckAdv) {
+              let r1=dr(20),r2=dr(20); r=Math.max(r1,r2); rollText=`2d20取高(${r1},${r2})=${r}`;
+              G.combat.luckAdv = false;
+            } else { r=dr(20); rollText=`1d20(${r})`; }
+            const tot = r + pSkill + keenBonus;
             await showDice(r, sk.nm);
-            cl2(`${sk.nm} 1d20(${r})+能力(${pSkill})${keenBonus?'+命中('+keenBonus+')':''}=${tot} vs 防禦${target.def}`);
+            cl2(`${sk.nm} ${rollText}+能力(${pSkill})${keenBonus?'+命中('+keenBonus+')':''}=${tot} vs 防禦${target.def}`);
             if (tot > target.def) {
               const isCrit = (r === 20);
               const dmg = isCrit ? Math.max(1, Math.round(pSkill * (sk.m || 1))) * 2 : Math.max(1, Math.round(pSkill * (sk.m || 1)));
@@ -2761,11 +2772,12 @@ async function cact(action) {
             let kills2a = 0;
             for (const en of ae2) {
               const eRoll = dr(20);
-              if (eRoll < G.comp2.skill) {
-                const dmg = Math.max(1, G.comp2.skill); en.hp = Math.max(0, en.hp - dmg);
-                cl2(`${en.name} 骰出 ${eRoll}（需≥${G.comp2.skill}），被旋風斬中！受到 ${dmg} 點傷害！`,'dmg'); ftxEn('-'+dmg,'r',en.id);
+              const keen2s = G.combat.keenBuff > 0 ? 5 : 0;
+              if (eRoll < pSkill + keen2s) {
+                const dmg = Math.max(1, pSkill); en.hp = Math.max(0, en.hp - dmg);
+                cl2(`${en.name} 骰出 ${eRoll} vs 閾值${pSkill+keen2s}，被旋風斬中！受到 ${dmg} 點傷害！`,'dmg'); ftxEn('-'+dmg,'r',en.id);
                 if (en.hp <= 0) kills2a++;
-              } else { cl2(`${en.name} 骰出 ${eRoll}，躲開了旋風斬！`); ftxEn('閃','m',en.id); }
+              } else { cl2(`${en.name} 骰出 ${eRoll} vs 閾值${pSkill+keen2s}，躲開了旋風斬！`); ftxEn('閃','m',en.id); }
             }
             if (kills2a > 0) { ae2.filter(e=>e.hp<=0).forEach(e=>{sl(`${e.name} 被斬倒了！`);G.player.exp+=e.exp;G.player.gp+=e.gp;}); lili('edie'); }
             await wt(400); G.comp = _origComp; rEnemies(G.combat.enemies); updateBars();
@@ -2799,11 +2811,12 @@ async function cact(action) {
             let kills2b = 0;
             for (const en of ae2) {
               const eRoll = dr(20);
-              if (eRoll < G.comp2.skill) {
-                const dmg = Math.max(1, G.comp2.skill); en.hp = Math.max(0, en.hp - dmg);
-                cl2(`${en.name} 骰出 ${eRoll}（需≥${G.comp2.skill}），被火球命中！受到 ${dmg} 點傷害！`,'dmg'); ftxEn('-'+dmg,'r',en.id);
+              const keen2f = G.combat.keenBuff > 0 ? 5 : 0;
+              if (eRoll < pSkill + keen2f) {
+                const dmg = Math.max(1, pSkill); en.hp = Math.max(0, en.hp - dmg);
+                cl2(`${en.name} 骰出 ${eRoll} vs 閾值${pSkill+keen2f}，被火球命中！受到 ${dmg} 點傷害！`,'dmg'); ftxEn('-'+dmg,'r',en.id);
                 if (en.hp <= 0) kills2b++;
-              } else { cl2(`${en.name} 骰出 ${eRoll}，閃過了火球！`); ftxEn('閃','m',en.id); }
+              } else { cl2(`${en.name} 骰出 ${eRoll} vs 閾值${pSkill+keen2f}，閃過了火球！`); ftxEn('閃','m',en.id); }
             }
             if (kills2b > 0) { ae2.filter(e=>e.hp<=0).forEach(e=>{sl(`${e.name} 被火球燒盡了！`);G.player.exp+=e.exp;G.player.gp+=e.gp;}); lili('edie'); }
             await wt(400); G.comp = _origComp; rEnemies(G.combat.enemies); updateBars();
@@ -2811,7 +2824,13 @@ async function cact(action) {
             document.querySelectorAll('.ab').forEach(b=>b.classList.remove('dim'));
 
           } else {
-            const r = dr(20); const tot = r + pSkill;
+            const keenBonus2 = G.combat.keenBuff > 0 ? 5 : 0;
+            let r, rollText;
+            if (G.combat.luckAdv) {
+              let r1=dr(20),r2=dr(20); r=Math.max(r1,r2); rollText=`2d20取高(${r1},${r2})=${r}`;
+              G.combat.luckAdv = false;
+            } else { r=dr(20); rollText=`1d20(${r})`; }
+            const tot = r + pSkill + keenBonus2;
             await showDice(r, sk.nm);
             if (tot > target.def) {
               const isCrit = r === 20;
@@ -3275,14 +3294,15 @@ async function tryCompSkill(target, isComp2 = false) {
     let kills2 = 0;
     for (const en of aliveEnemies) {
       const eRoll = dr(20);
-      if (eRoll < c.skill) {
+      const keenAoe = G.combat.keenBuff > 0 ? 5 : 0;
+      if (eRoll < c.skill + keenAoe) {
         const dmg = Math.max(1, c.skill);
         en.hp = Math.max(0, en.hp - dmg);
-        cl2(`${en.name} 骰出 ${eRoll}（需≥${c.skill}），被旋風斬中！受到 ${dmg} 點傷害！`, 'dmg');
+        cl2(`${en.name} 骰出 ${eRoll} vs 閾值${c.skill+keenAoe}，被旋風斬中！受到 ${dmg} 點傷害！`, 'dmg');
         ftxEn('-'+dmg,'r',en.id);
         if (en.hp <= 0) kills2++;
       } else {
-        cl2(`${en.name} 骰出 ${eRoll}，躲開了旋風斬！`);
+        cl2(`${en.name} 骰出 ${eRoll} vs 閾值${c.skill+keenAoe}，躲開了旋風斬！`);
         ftxEn('閃','m',en.id);
       }
     }
@@ -3354,14 +3374,15 @@ async function tryCompSkill(target, isComp2 = false) {
     let totalKills = 0;
     for (const en of aliveEnemies) {
       const eRoll = dr(20);
-      if (eRoll < c.skill) {
+      const keenAoe2 = G.combat.keenBuff > 0 ? 5 : 0;
+      if (eRoll < c.skill + keenAoe2) {
         const dmg = Math.max(1, c.skill);
         en.hp = Math.max(0, en.hp - dmg);
-        cl2(`${en.name} 骰出 ${eRoll}（需≥${c.skill}），被火球命中！受到 ${dmg} 點傷害！`, 'dmg');
+        cl2(`${en.name} 骰出 ${eRoll} vs 閾值${c.skill+keenAoe2}，被火球命中！受到 ${dmg} 點傷害！`, 'dmg');
         ftxEn('-'+dmg,'r',en.id);
         if (en.hp <= 0) totalKills++;
       } else {
-        cl2(`${en.name} 骰出 ${eRoll}，閃過了火球！`);
+        cl2(`${en.name} 骰出 ${eRoll} vs 閾值${c.skill+keenAoe2}，閃過了火球！`);
         ftxEn('閃','m',en.id);
       }
     }
@@ -3622,8 +3643,9 @@ async function enemyTurn(target, pDef) {
   // 🌟 祝福盔甲：每回合回 1 HP
   const _armorId = G.player.eq && G.player.eq.armor;
   if (_armorId && EQS[_armorId] && EQS[_armorId].blessed === 'regen' && G.player.hp > 0 && G.player.hp < G.player.maxHp) {
-    G.player.hp = Math.min(G.player.maxHp, G.player.hp + 2);
-    cl2('✦ 祝福盔甲回復 2 HP。', 'sys'); ftx('+2','g','pl-spr');
+    const regenAmt = Math.max(1, Math.floor(G.player.maxHp * 0.1));
+    G.player.hp = Math.min(G.player.maxHp, G.player.hp + regenAmt);
+    cl2(`✦ 祝福盔甲回復 ${regenAmt} HP。`, 'sys'); ftx('+'+regenAmt,'g','pl-spr');
     blessedFlashEl('pl-spr', 'green');
   }
   if (G.player.hp <= 0) gameOver();
@@ -3782,9 +3804,13 @@ function checkLevelUp() {
 const SAVE_KEY = 'osang_save'; // slot 1 key prefix: osang_save_1, _2, _3
 
 function buildSaveData() {
+  // 把動態產生的祝福裝備一起存
+  const blessedEqs = {};
+  Object.keys(EQS).filter(k => k.startsWith('blessed_')).forEach(k => { blessedEqs[k] = EQS[k]; });
   return JSON.stringify({
     ver: 1,
     ts: Date.now(),
+    blessedEqs,
     G: {
       dungeon: { ...G.dungeon, currentCards: [] },
       player: JSON.parse(JSON.stringify(G.player)),
@@ -3809,6 +3835,10 @@ function loadGame(slot = 1) {
     if (!raw) { alert(`存檔槽 ${slot} 沒有資料。`); return; }
     const data = JSON.parse(raw);
     if (!data.G || !data.G.player) { alert('存檔格式錯誤。'); return; }
+    // 還原祝福裝備定義
+    if (data.blessedEqs) {
+      Object.keys(data.blessedEqs).forEach(k => { EQS[k] = data.blessedEqs[k]; });
+    }
     G.dungeon  = { ...data.G.dungeon, currentCards: [] };
     G.player   = data.G.player;
     G.comp     = data.G.comp  || null;
