@@ -1,0 +1,730 @@
+{
+  "rulesVersion": "srd-5.2.1",
+  "sourceDocument": "SRD 5.2.1",
+  "sourceUrl": "https://www.dndbeyond.com/srd",
+  "classes": {
+    "fighter": {
+      "name": "戰士",
+      "hitDie": 10,
+      "sourcePage": 47,
+      "saves": [
+        "STR",
+        "CON"
+      ],
+      "stat": "STR",
+      "features": [
+        "防禦戰鬥風格",
+        "回氣（2 次）",
+        "武器專精：長劍／長弓／標槍"
+      ],
+      "sourceDocument": "SRD 5.2.1",
+      "implementationStatus": "prototype"
+    },
+    "rogue": {
+      "name": "遊蕩者",
+      "hitDie": 8,
+      "sourcePage": 61,
+      "saves": [
+        "DEX",
+        "INT"
+      ],
+      "stat": "DEX",
+      "features": [
+        "偷襲 1d6（每回合一次）",
+        "專精：巧手／隱匿",
+        "盜賊黑話",
+        "武器專精：短劍／短弓"
+      ],
+      "sourceDocument": "SRD 5.2.1",
+      "implementationStatus": "prototype"
+    },
+    "cleric": {
+      "name": "牧師",
+      "hitDie": 8,
+      "sourcePage": 36,
+      "saves": [
+        "WIS",
+        "CHA"
+      ],
+      "stat": "WIS",
+      "features": [
+        "神聖秩序：守護者",
+        "3 個戲法",
+        "4 個準備法術",
+        "1 環法術位：2"
+      ],
+      "sourceDocument": "SRD 5.2.1",
+      "implementationStatus": "prototype"
+    },
+    "wizard": {
+      "name": "法師",
+      "hitDie": 6,
+      "sourcePage": 77,
+      "saves": [
+        "INT",
+        "WIS"
+      ],
+      "stat": "INT",
+      "features": [
+        "3 個戲法",
+        "法術書：6 個法術／準備 4 個",
+        "奧術回復",
+        "儀式熟手（本次無儀式法術）"
+      ],
+      "sourceDocument": "SRD 5.2.1",
+      "implementationStatus": "prototype"
+    }
+  },
+  "weapons": {
+    "longsword": {
+      "name": "長劍",
+      "dice": [
+        1,
+        8
+      ],
+      "stat": "STR",
+      "reach": 1,
+      "mastery": "sap",
+      "sourcePage": 89,
+      "sourceDocument": "SRD 5.2.1",
+      "implementationStatus": "prototype"
+    },
+    "longbow": {
+      "name": "長弓",
+      "dice": [
+        1,
+        8
+      ],
+      "stat": "DEX",
+      "range": 30,
+      "long": 120,
+      "mastery": "slow",
+      "sourcePage": 89,
+      "sourceDocument": "SRD 5.2.1",
+      "implementationStatus": "prototype"
+    },
+    "shortsword": {
+      "name": "短劍",
+      "dice": [
+        1,
+        6
+      ],
+      "stat": "DEX",
+      "reach": 1,
+      "mastery": "vex",
+      "sourcePage": 89,
+      "sourceDocument": "SRD 5.2.1",
+      "implementationStatus": "prototype"
+    },
+    "shortbow": {
+      "name": "短弓",
+      "dice": [
+        1,
+        6
+      ],
+      "stat": "DEX",
+      "range": 16,
+      "long": 64,
+      "mastery": "vex",
+      "sourcePage": 89,
+      "sourceDocument": "SRD 5.2.1",
+      "implementationStatus": "prototype"
+    },
+    "mace": {
+      "name": "硬頭錘",
+      "dice": [
+        1,
+        6
+      ],
+      "stat": "STR",
+      "reach": 1,
+      "sourcePage": 89,
+      "sourceDocument": "SRD 5.2.1",
+      "implementationStatus": "prototype"
+    },
+    "quarterstaff": {
+      "name": "長棍",
+      "dice": [
+        1,
+        6
+      ],
+      "stat": "STR",
+      "reach": 1,
+      "sourcePage": 89,
+      "sourceDocument": "SRD 5.2.1",
+      "implementationStatus": "prototype"
+    },
+    "scimitar": {
+      "name": "彎刀",
+      "dice": [
+        1,
+        6
+      ],
+      "stat": "DEX",
+      "reach": 1,
+      "sourcePage": 261,
+      "sourceDocument": "SRD 5.2.1",
+      "implementationStatus": "prototype"
+    },
+    "lightcrossbow": {
+      "name": "輕弩",
+      "dice": [
+        1,
+        8
+      ],
+      "stat": "DEX",
+      "range": 16,
+      "long": 64,
+      "sourcePage": 261,
+      "sourceDocument": "SRD 5.2.1",
+      "implementationStatus": "prototype"
+    }
+  },
+  "spells": {
+    "firebolt": {
+      "name": "火焰箭",
+      "level": 0,
+      "kind": "attack",
+      "range": 24,
+      "dice": [
+        1,
+        10
+      ],
+      "components": "VS",
+      "sourcePage": 132,
+      "sourceDocument": "SRD 5.2.1",
+      "implementationStatus": "prototype"
+    },
+    "sacredflame": {
+      "name": "聖火",
+      "level": 0,
+      "kind": "save",
+      "save": "DEX",
+      "range": 12,
+      "dice": [
+        1,
+        8
+      ],
+      "components": "VS",
+      "ignoresCover": true,
+      "sourcePage": 159,
+      "sourceDocument": "SRD 5.2.1",
+      "implementationStatus": "prototype"
+    },
+    "light": {
+      "name": "光亮術",
+      "level": 0,
+      "kind": "light",
+      "range": 1,
+      "components": "VM",
+      "sourcePage": 144,
+      "sourceDocument": "SRD 5.2.1",
+      "implementationStatus": "prototype"
+    },
+    "guidance": {
+      "name": "神導術",
+      "level": 0,
+      "kind": "guidance",
+      "range": 1,
+      "concentration": true,
+      "components": "VS",
+      "sourcePage": 138,
+      "sourceDocument": "SRD 5.2.1",
+      "implementationStatus": "prototype"
+    },
+    "magehand": {
+      "name": "法師之手",
+      "level": 0,
+      "kind": "hand",
+      "range": 6,
+      "components": "VS",
+      "sourcePage": 145,
+      "sourceDocument": "SRD 5.2.1",
+      "implementationStatus": "prototype"
+    },
+    "curewounds": {
+      "name": "治療傷口",
+      "level": 1,
+      "kind": "heal",
+      "range": 1,
+      "dice": [
+        2,
+        8
+      ],
+      "components": "VS",
+      "sourcePage": 121,
+      "sourceDocument": "SRD 5.2.1",
+      "implementationStatus": "prototype"
+    },
+    "healingword": {
+      "name": "治癒真言",
+      "level": 1,
+      "kind": "heal",
+      "range": 12,
+      "dice": [
+        2,
+        4
+      ],
+      "bonus": true,
+      "components": "V",
+      "sourcePage": 139,
+      "sourceDocument": "SRD 5.2.1",
+      "implementationStatus": "prototype"
+    },
+    "bless": {
+      "name": "祝福術",
+      "level": 1,
+      "kind": "bless",
+      "range": 6,
+      "concentration": true,
+      "components": "VSM",
+      "sourcePage": 113,
+      "sourceDocument": "SRD 5.2.1",
+      "implementationStatus": "prototype"
+    },
+    "guidingbolt": {
+      "name": "曳光彈",
+      "level": 1,
+      "kind": "attack",
+      "range": 24,
+      "dice": [
+        4,
+        6
+      ],
+      "components": "VS",
+      "sourcePage": 138,
+      "sourceDocument": "SRD 5.2.1",
+      "implementationStatus": "prototype"
+    },
+    "magearmor": {
+      "name": "法師護甲",
+      "level": 1,
+      "kind": "armor",
+      "range": 1,
+      "components": "VSM",
+      "sourcePage": 145,
+      "sourceDocument": "SRD 5.2.1",
+      "implementationStatus": "prototype"
+    },
+    "shield": {
+      "name": "護盾術",
+      "level": 1,
+      "kind": "reaction",
+      "range": 0,
+      "components": "VS",
+      "sourcePage": 161,
+      "sourceDocument": "SRD 5.2.1",
+      "implementationStatus": "prototype"
+    },
+    "magicmissile": {
+      "name": "魔法飛彈",
+      "level": 1,
+      "kind": "missile",
+      "range": 24,
+      "dice": [
+        1,
+        4
+      ],
+      "components": "VS",
+      "sourcePage": 146,
+      "sourceDocument": "SRD 5.2.1",
+      "implementationStatus": "prototype"
+    },
+    "burninghands": {
+      "name": "燃燒之手",
+      "level": 1,
+      "kind": "cone",
+      "range": 3,
+      "dice": [
+        3,
+        6
+      ],
+      "save": "DEX",
+      "components": "VS",
+      "sourcePage": 114,
+      "sourceDocument": "SRD 5.2.1",
+      "implementationStatus": "prototype"
+    },
+    "thunderwave": {
+      "name": "雷鳴波",
+      "level": 1,
+      "kind": "cube",
+      "range": 3,
+      "dice": [
+        2,
+        8
+      ],
+      "save": "CON",
+      "components": "VS",
+      "sourcePage": 169,
+      "sourceDocument": "SRD 5.2.1",
+      "implementationStatus": "prototype"
+    },
+    "falselife": {
+      "name": "虛假生命",
+      "level": 1,
+      "kind": "temp",
+      "range": 0,
+      "dice": [
+        2,
+        4
+      ],
+      "components": "VSM",
+      "sourcePage": 129,
+      "sourceDocument": "SRD 5.2.1",
+      "implementationStatus": "prototype"
+    }
+  },
+  "presets": [
+    {
+      "id": "fighter",
+      "name": "芮恩",
+      "color": "#c9984b",
+      "scores": {
+        "STR": 17,
+        "DEX": 12,
+        "CON": 15,
+        "INT": 8,
+        "WIS": 13,
+        "CHA": 10
+      },
+      "armor": "chain",
+      "shield": true,
+      "weapons": [
+        "longsword",
+        "longbow"
+      ],
+      "skills": [
+        "athletics",
+        "intimidation",
+        "perception",
+        "survival",
+        "medicine",
+        "history",
+        "investigation",
+        "acrobatics"
+      ],
+      "masteries": [
+        "longsword",
+        "longbow",
+        "javelin"
+      ]
+    },
+    {
+      "id": "rogue",
+      "name": "伊芙",
+      "color": "#82a887",
+      "scores": {
+        "STR": 10,
+        "DEX": 16,
+        "CON": 16,
+        "INT": 13,
+        "WIS": 12,
+        "CHA": 8
+      },
+      "armor": "leather",
+      "shield": false,
+      "weapons": [
+        "shortsword",
+        "shortbow"
+      ],
+      "skills": [
+        "athletics",
+        "intimidation",
+        "sleight",
+        "stealth",
+        "perception",
+        "investigation",
+        "acrobatics",
+        "survival",
+        "medicine",
+        "history"
+      ],
+      "masteries": [
+        "shortsword",
+        "shortbow"
+      ]
+    },
+    {
+      "id": "cleric",
+      "name": "米洛",
+      "color": "#9bb8d0",
+      "scores": {
+        "STR": 15,
+        "DEX": 12,
+        "CON": 15,
+        "INT": 10,
+        "WIS": 15,
+        "CHA": 8
+      },
+      "armor": "chainshirt",
+      "shield": true,
+      "weapons": [
+        "mace",
+        "quarterstaff"
+      ],
+      "skills": [
+        "athletics",
+        "intimidation",
+        "medicine",
+        "religion",
+        "perception",
+        "survival",
+        "history",
+        "investigation"
+      ],
+      "cantrips": [
+        "sacredflame",
+        "guidance",
+        "light"
+      ],
+      "spells": [
+        "curewounds",
+        "healingword",
+        "bless",
+        "guidingbolt"
+      ]
+    },
+    {
+      "id": "wizard",
+      "name": "賽拉",
+      "color": "#b2a0c8",
+      "scores": {
+        "STR": 8,
+        "DEX": 15,
+        "CON": 15,
+        "INT": 15,
+        "WIS": 12,
+        "CHA": 10
+      },
+      "armor": "none",
+      "shield": false,
+      "weapons": [
+        "quarterstaff"
+      ],
+      "skills": [
+        "athletics",
+        "intimidation",
+        "arcana",
+        "investigation",
+        "perception",
+        "survival",
+        "medicine",
+        "history"
+      ],
+      "cantrips": [
+        "firebolt",
+        "magehand",
+        "light"
+      ],
+      "spells": [
+        "magearmor",
+        "shield",
+        "magicmissile",
+        "burninghands"
+      ],
+      "book": [
+        "magearmor",
+        "shield",
+        "magicmissile",
+        "burninghands",
+        "thunderwave",
+        "falselife"
+      ]
+    }
+  ],
+  "background": {
+    "id": "soldier",
+    "name": "士兵",
+    "sourcePage": 83,
+    "feat": "savageAttacker"
+  },
+  "species": {
+    "id": "human",
+    "name": "人類",
+    "sourcePage": 86,
+    "speed": 30,
+    "originFeat": "skilled"
+  },
+  "enemy": {
+    "name": "盜賊",
+    "sourcePage": 261,
+    "hp": 11,
+    "ac": 12,
+    "scores": {
+      "STR": 11,
+      "DEX": 12,
+      "CON": 12,
+      "INT": 10,
+      "WIS": 10,
+      "CHA": 10
+    },
+    "weapons": [
+      "scimitar",
+      "lightcrossbow"
+    ],
+    "attackBonus": 3
+  },
+  "map": {
+    "width": 8,
+    "height": 10,
+    "walls": [
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        2,
+        0
+      ],
+      [
+        5,
+        0
+      ],
+      [
+        6,
+        0
+      ],
+      [
+        7,
+        0
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        0,
+        3
+      ],
+      [
+        0,
+        4
+      ],
+      [
+        0,
+        5
+      ],
+      [
+        0,
+        6
+      ],
+      [
+        0,
+        7
+      ],
+      [
+        0,
+        8
+      ],
+      [
+        0,
+        9
+      ],
+      [
+        7,
+        1
+      ],
+      [
+        7,
+        2
+      ],
+      [
+        7,
+        3
+      ],
+      [
+        7,
+        4
+      ],
+      [
+        7,
+        5
+      ],
+      [
+        7,
+        6
+      ],
+      [
+        7,
+        7
+      ],
+      [
+        7,
+        8
+      ],
+      [
+        7,
+        9
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        2,
+        4
+      ],
+      [
+        5,
+        4
+      ],
+      [
+        5,
+        5
+      ],
+      [
+        3,
+        1
+      ]
+    ],
+    "stairs": [
+      4,
+      0
+    ],
+    "cache": [
+      1,
+      2
+    ],
+    "door": [
+      3,
+      5
+    ],
+    "spawns": [
+      [
+        2,
+        8
+      ],
+      [
+        3,
+        8
+      ],
+      [
+        4,
+        8
+      ],
+      [
+        5,
+        8
+      ]
+    ],
+    "foes": [
+      [
+        2,
+        2
+      ],
+      [
+        5,
+        2
+      ]
+    ]
+  }
+}
