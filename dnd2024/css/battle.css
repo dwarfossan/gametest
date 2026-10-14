@@ -107,3 +107,7 @@
 .combat-dock .dock-prompt{font-size:14px;line-height:1.5;margin:0;padding:6px 4px;color:#e8e0cd;white-space:normal}
 
 .combat-tile.difficult{background:#867454;background-image:radial-gradient(#b4a081 20%,transparent 22%);background-size:9px 7px}.combat-tile.gap{background:#071217;box-shadow:inset 0 0 0 2px #52646b}.combat-tile.difficult.can-move{background-color:#398db8}
+
+.terrain-art{position:absolute;overflow:visible;pointer-events:none}.combat-tile.elevated,.combat-tile.wall,.combat-tile.gap,.combat-tile.difficult{background:transparent!important;box-shadow:none}.combat-tile.can-move.elevated,.combat-tile.can-move.difficult,.combat-tile.can-move.gap{background:#4398bf88!important;box-shadow:inset 0 0 0 2px #b8e6ff}.combat-tile.elevated:hover,.combat-tile.difficult:hover,.combat-tile.gap:hover{box-shadow:inset 0 0 0 2px #e6d29d}
+
+.terrain-art{pointer-events:none}.terrain-art>path,.terrain-art>polygon,.terrain-art>polyline{pointer-events:visiblePainted}

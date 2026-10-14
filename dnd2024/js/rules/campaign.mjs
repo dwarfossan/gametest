@@ -1,5 +1,6 @@
+import {heightAt} from './terrain.mjs?v=20261014.31';
 import {hasGear} from './items.mjs?v=20261014.23';
-import * as R from './engine.mjs?v=20261014.30';
+import * as R from './engine.mjs?v=20261014.31';
 export const SETTINGS={recruitFee:0,rooms:5,chestGold:12,eventDC:12};
 export function start(s){s.campaign={location:'guild',recruited:[],run:0,loot:0,baseGold:s.gold,map:null,rooms:[],visited:[],check:null};return s;}
 export function recruit(s,id){const c=s.campaign;if(c.location!=='guild'||id===s.hero||c.recruited.includes(id)||!R.unit(s,id))return false;c.recruited.push(id);return true;}
@@ -8,7 +9,7 @@ export function enter(s,c){const a=s.campaign;if(a.location!=='guild'||a.recruit
  // Two vertical routes and their connecting corridors are always preserved.
  for(let y=2;y<=6;y++)if(R.rng(s,2)===1)walls.push([3,y]);
  a.map={...R.copy(c.map),walls,door:[3,7],cache:[5,1],stairs:[5,1],foes:[[2,1],[5,2]]};c.map=R.copy(a.map);s.door=true;s.cache=false;s.found=false;s.result=null;s.page='explore';s.pending=null;s.order=[];
- s.units.forEach((u,i)=>{if(u.side==='party'){[u.x,u.y]=c.map.spawns[i];}else{[u.x,u.y]=c.map.foes[i-4];u.hp=u.maxHp;u.dead=false;}});
+ s.units.forEach((u,i)=>{if(u.side==='party'){[u.x,u.y]=c.map.spawns[i];}else{[u.x,u.y]=c.map.foes[i-4];u.hp=u.maxHp;u.dead=false;}delete u.climbing;u.z=heightAt(c,u);});
  a.rooms=[{x:1,y:7,type:'clue',text:'左路傳來靴底摩擦聲；北側有新鮮腳印。'},{x:6,y:7,type:'chest',text:'岔路旁有一只未上鎖的寶箱。'},{x:1,y:4,type:'safe',text:'乾燥的壁龕，適合短休。'},{x:6,y:4,type:'event',text:'碎石遮住通道，選一名隊員調查。'},{x:5,y:1,type:'exit',text:'守衛身後是出口與信物。'}];R.log(s,`第 ${a.run} 次遠征：地城已重新生成。`);return {ok:true};}
 export function inspect(s,id){const a=s.campaign,u=R.unit(s,id);if(a.location!=='dungeon'||s.page!=='explore'||!R.alive(u))return {ok:false,error:'目前不能探索'};const room=a.rooms.find(r=>R.distance(u,r)<=1&&!a.visited.includes(r.type));if(!room)return {ok:false,error:'請靠近尚未探索的標記'};if(room.requiredGear&&!hasGear(u,room.requiredGear))return {ok:false,error:'缺少所需物品：'+room.requiredGear};a.visited.push(room.type);R.log(s,room.text);if(room.type==='chest'){s.gold+=SETTINGS.chestGold;a.loot+=SETTINGS.chestGold;R.log(s,`本次戰利品 +${SETTINGS.chestGold} gp。`);}if(room.type==='event'||room.type==='clue'){const check=R.skillRoll(s,u,'perception'),raw=check.natural,bonus=check.total-raw;a.check={actor:id,raw,bonus,total:raw+bonus,dc:SETTINGS.eventDC};R.log(s,`${u.name}代表察覺：d20 ${raw} ${bonus>=0?'+':''}${bonus} = ${raw+bonus} / DC ${SETTINGS.eventDC}；${raw+bonus>=SETTINGS.eventDC?'辨認出兩名盜賊的足跡':'情報不足，仍可繼續探索'}。`);}return {ok:true};}
-export function returnGuild(s,defeat=false){const a=s.campaign;if(!a||a.location!=='dungeon')return false;if(defeat)s.gold=a.baseGold;a.loot=0;a.location='guild';s.page='explore';s.pending=null;s.found=false;s.units.filter(u=>u.side==='party').forEach(u=>{if(defeat){u.hp=1;u.dead=false;u.stable=false;u.death={success:0,fail:0};u.prone=false;}});R.log(s,defeat?'小隊救回公會：本次戰利品全部沒收，入場前財產與裝備保留。':'撤退返回公會，帶回本次已取得的戰利品。');return true;}
+export function returnGuild(s,defeat=false){const a=s.campaign;if(!a||a.location!=='dungeon')return false;if(defeat)s.gold=a.baseGold;a.loot=0;a.location='guild';s.page='explore';s.pending=null;s.found=false;s.units.filter(u=>u.side==='party').forEach((u,i)=>{if(a.map?.spawns?.[i])[u.x,u.y]=a.map.spawns[i];delete u.climbing;u.z=heightAt({map:a.map||{elevations:[],gaps:[]}},u);if(defeat){u.hp=1;u.dead=false;u.stable=false;u.death={success:0,fail:0};u.prone=false;}});R.log(s,defeat?'小隊救回公會：本次戰利品全部沒收，入場前財產與裝備保留。':'撤退返回公會，帶回本次已取得的戰利品。');return true;}
