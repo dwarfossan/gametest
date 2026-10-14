@@ -1,4 +1,4 @@
-import {bindTooltips} from './tooltips.mjs?v=20261014.21';
+import {bindTooltips} from './tooltips.mjs?v=20261014.22';
 import {sheetHTML as characterSheetHTML} from './sheet.mjs?v=20261014.21';
 import {paperDollHTML,playMotion,normalizeAppearance} from './paperdoll.mjs?v=20261014.21';
 import {newDraft,creatorHTML} from './creator.mjs';
