@@ -1,4 +1,4 @@
-// Based on fuwafuwatavern dev 526d849; human arm links now follow the retained weapon grip anchors.
+// Based on fuwafuwatavern dev 526d849; human characters retain hands without visible arms.
 const MONSTER_LOOK={};
 const ITEMS=[];
 const leveling=()=>false; // dnd2024 currently has no level-up presentation.
@@ -240,7 +240,6 @@ var humanLook = function({sex="male", hair="01", beard=null, ears="human", hairC
     body:"#bba795", skin, feet:"#6b4a35", belly:false,
     tail: `<g ${B.headAttr}>${col(H.back)}</g>`,                                  // 後髮：畫在身體後面
     bodyArt: B.body + B.neck.replace(/#e8bb9b/g, skin), gearFit: B.fit || "",
-    shoulders: sex === "female" ? {main:[84.08,92],off:[55.92,92]} : {main:[91,92],off:[48,92]},
     anchor: {head:[50,44,.8], neck:[72,88]},                                     // 頭小一號：頭飾、項鍊對準人類的頭（暫定）
     human: {sex, hair, beard, ears}};
 };
@@ -471,7 +470,6 @@ function critterLook(id, c, mood="normal"){
 
 /* o: {id, color 或 look, main, off, armor, anim:{k, el}, face, down, prone, x, y, w, seed}
    down＝生命歸零（橫躺、半透明、X_X）；prone＝被推倒（橫躺、顏色正常） */
-export function armPath(shoulder,wrist,side){const [sx,sy]=shoulder,[wx,wy]=wrist;return `M${sx} ${sy} Q${(sx+wx)/2+(side==='main'?4:-4)} ${(sy+wy)/2+4} ${wx} ${wy}`;}
 function dollSVG(o){
   if(o.look?.render)return o.look.render(o);
   const L = o.look || critterLook(o.id, o.color, o.mood), c = L.skin, INK="#2a2630";
@@ -494,10 +492,6 @@ function dollSVG(o){
     else if(off) offHand = heldSVG(off,36,96) + `<g class="dl-hand-off">${handSVG(40,110,c)}</g>`;
     else offHand = `<g class="dl-hand-off">${handSVG(40,106,c)}</g>`;
   }
-  const mainWrist=[h?.hx??100,h?.hy??104];
-  let offWrist=[40,off&&off!=="shield"&&off!=="round_shield"?110:106];
-  if(two){const scale=h.s??.4,angle=h.ang*Math.PI/180,x=((h.twoX??(h.gx??60))-(h.gx??60))*scale,y=(h.two-h.gy)*scale;offWrist=[mainWrist[0]+x*Math.cos(angle)-y*Math.sin(angle),mainWrist[1]+x*Math.sin(angle)+y*Math.cos(angle)];}
-  const armLinks=L.shoulders?`<g class="dl-arm-links">${[["off",offWrist],["main",mainWrist]].map(([side,wrist])=>{const shoulder=L.shoulders[side],d=armPath(shoulder,wrist,side);return `<g data-arm-side="${side}" data-shoulder="${shoulder.join(',')}"><path d="${d}" fill="none" stroke="${INK}" stroke-width="13" stroke-linecap="round"/><path d="${d}" fill="none" stroke="${c}" stroke-width="9" stroke-linecap="round"/></g>`;}).join('')}</g>`:"";
   const glow = GLOW[off] || GLOW[main] || "#f2b441";
   const act = o.walking ? "act-walk" : o.anim ? `act-${o.anim.k}${o.anim.hand==="off"?" offhand-attack":""}` : "";
   const flip = (o.face||1) < 0 ? `transform="translate(140 0) scale(-1 1)"` : "";
@@ -515,7 +509,6 @@ function dollSVG(o){
         ${L.belly?`<ellipse cx="70" cy="113" rx="13" ry="14" fill="#fbf4ee" opacity=".85"/>`:""}
         ${L.extra||""}
         <g class="dl-gear-body"${L.gearFit?` transform="${L.gearFit}"`:""}>${gear.body||""}</g>
-        ${armLinks}
         <g class="dl-gear-neck">${gear.neck ? `<g transform="translate(${anc.neck.join(" ")})">${gear.neck}</g>` : ""}</g>
         ${L.head.replace('<svg viewBox="0 0 100 100"', '<svg x="32" y="6" width="76" height="76" viewBox="0 0 100 100"')}
         ${cheer && L.headHappy ? `<g>${L.headHappy.replace('<svg viewBox="0 0 100 100"', '<svg x="32" y="6" width="76" height="76" viewBox="0 0 100 100"')}</g>` : ""}
