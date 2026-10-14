@@ -35,4 +35,4 @@ body,.cs-card{font-family:GameTC,CardTC,system-ui,sans-serif}
 
 .cs-inventory>div{height:41px;min-height:41px;padding:4px;box-sizing:border-box}
 
-@font-face{font-family:PossessionTC;src:url('../assets/possession-font.woff?v=20261014.23') format('woff')}body,.cs-card,.help-tooltip{font-family:GameTC,CardTC,PossessionTC,system-ui,sans-serif}
+@font-face{font-family:PossessionTC;src:url('../assets/possession-font.woff?v=20261014.26') format('woff')}body,.cs-card,.help-tooltip{font-family:GameTC,CardTC,PossessionTC,system-ui,sans-serif}
