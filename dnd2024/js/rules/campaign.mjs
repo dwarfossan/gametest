@@ -1,4 +1,4 @@
-import * as R from './engine.mjs';
+import * as R from './engine.mjs?v=20261014.17';
 export const SETTINGS={recruitFee:0,rooms:5,chestGold:12,eventDC:12};
 export function start(s){s.campaign={location:'guild',recruited:[],run:0,loot:0,baseGold:s.gold,map:null,rooms:[],visited:[],check:null};return s;}
 export function recruit(s,id){const c=s.campaign;if(c.location!=='guild'||id===s.hero||c.recruited.includes(id)||!R.unit(s,id))return false;c.recruited.push(id);return true;}

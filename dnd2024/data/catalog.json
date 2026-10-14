@@ -101,7 +101,8 @@
       "mastery": "slow",
       "sourcePage": 89,
       "sourceDocument": "SRD 5.2.1",
-      "implementationStatus": "prototype"
+      "implementationStatus": "prototype",
+      "twoHanded": true
     },
     "shortsword": {
       "name": "短劍",
@@ -129,7 +130,8 @@
       "mastery": "vex",
       "sourcePage": 89,
       "sourceDocument": "SRD 5.2.1",
-      "implementationStatus": "prototype"
+      "implementationStatus": "prototype",
+      "twoHanded": true
     },
     "mace": {
       "name": "硬頭錘",
@@ -179,7 +181,8 @@
       "long": 64,
       "sourcePage": 261,
       "sourceDocument": "SRD 5.2.1",
-      "implementationStatus": "prototype"
+      "implementationStatus": "prototype",
+      "twoHanded": true
     }
   },
   "spells": {
