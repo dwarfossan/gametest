@@ -22,3 +22,6 @@
 - tests/rules.mjs：針對性規則驗證，`node dnd2024/tests/rules.mjs`。
 
 核心程式使用者名稱只經HTML跳脫，存檔需核對版本、角色與法術；匯入失敗保留目前遊戲。
+
+## 戰鬥介面（20261014.4）
+戰鬥 UI 使用上方先攻列、大地圖、右下分層指令列與底部 D&D 資源。僅參考毛絨絨版面，不引入其自訂規則。UI 模組為 js/ui/battle.mjs，樣式 css/battle.css；檢查 node dnd2024/tests/battle-ui.mjs。
