@@ -55,3 +55,17 @@
  .map-tools{font-size:10px;gap:5px}.map-tools button{min-height:30px;font-size:16px;padding:1px 10px}
  .move-preview{top:46px;font-size:10px;padding:3px 7px}
 }
+
+/* Size controls to their labels rather than stretching them across the dock. */
+.combat-dock,.combat-dock:has(.end-turn){width:max-content;max-width:min(290px,calc(100% - 16px))}
+.combat-dock>div{justify-items:start}
+.combat-dock button{width:max-content;max-width:100%;min-width:0;padding-left:10px;padding-right:10px}
+@media(min-width:600px) and (orientation:landscape){
+ .combat-dock,.combat-dock:has(.end-turn){width:max-content;max-width:min(310px,calc(100% - 24px))}
+ .combat-dock button{padding-left:10px;padding-right:10px}
+}
+@media(min-width:600px) and (orientation:landscape) and (max-height:500px){
+ .combat-dock,.combat-dock:has(.end-turn){width:max-content;max-width:calc(100% - 14px)}
+ .combat-dock:has(.end-turn)>div{grid-template-columns:repeat(2,max-content)}
+ .combat-dock button{padding-left:8px;padding-right:8px}
+}
