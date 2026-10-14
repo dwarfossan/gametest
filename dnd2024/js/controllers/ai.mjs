@@ -1,4 +1,4 @@
-import {current,alive,distance,validate,unit} from '../rules/engine.mjs?v=20261014.21';
+import {current,alive,distance,validate,unit} from '../rules/engine.mjs?v=20261014.23';
 // No hidden state access: visible targets only; returns a command, never mutates rules.
 export function choose(s,c){const u=current(s);if(!u)return null;const intent=(kind,extra={})=>({actor:u.id,kind,...extra}),legal=a=>!validate(s,c,a);const freeNet=intent('netescape',{target:u.id});if(legal(freeNet))return freeNet;const escape=intent('escape');if(legal(escape))return escape;if(u.prone){const a=intent('stand');if(legal(a))return a;}
  for(const item of s.groundItems||[]){const a=intent('pickup',{item:item.id});if(item.owner===u.id&&legal(a))return a;}if(u.class==='fighter'&&u.hp<u.maxHp/2){const a=intent('secondwind');if(legal(a))return a;}

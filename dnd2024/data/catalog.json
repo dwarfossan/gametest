@@ -285,7 +285,10 @@
       "components": "VSM",
       "sourcePage": 113,
       "sourceDocument": "SRD 5.2.1",
-      "implementationStatus": "prototype"
+      "implementationStatus": "prototype",
+      "materialItem": "holySymbol",
+      "materialName": "價值至少 5 金幣的聖徽",
+      "materialCost": 5
     },
     "guidingbolt": {
       "name": "曳光彈",

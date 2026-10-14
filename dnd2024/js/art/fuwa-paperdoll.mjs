@@ -524,4 +524,4 @@ function dollSVG(o){
 }
 
 
-export {humanLook,dollSVG,DOLL_DUR,HELD,HUMAN_PARTS};
+export {ITEM_ART,humanLook,dollSVG,DOLL_DUR,HELD,HUMAN_PARTS};
