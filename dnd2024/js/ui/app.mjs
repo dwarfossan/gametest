@@ -1,11 +1,11 @@
-import {bindTooltips} from './tooltips.mjs?v=20261014.31';
-import {sheetHTML as characterSheetHTML} from './sheet.mjs?v=20261014.31';
+import {bindTooltips} from './tooltips.mjs?v=20261014.32';
+import {sheetHTML as characterSheetHTML} from './sheet.mjs?v=20261014.32';
 import {paperDollHTML,playMotion,normalizeAppearance} from './paperdoll.mjs?v=20261014.30';
 import {newDraft,creatorHTML} from './creator.mjs?v=20261014.23';
-import {planWalk,advanceWalk} from '../rules/movement.mjs?v=20261014.31';
-import {battleHTML,newBattleUI} from './battle.mjs?v=20261014.31';
-import {combatTest} from '../rules/combat-test.mjs?v=20261014.31';
-import * as R from '../rules/engine.mjs?v=20261014.31';import * as C from '../rules/campaign.mjs?v=20261014.31';import {choose} from '../controllers/ai.mjs?v=20261014.31';
+import {planWalk,advanceWalk} from '../rules/movement.mjs?v=20261014.32';
+import {battleHTML,newBattleUI} from './battle.mjs?v=20261014.32';
+import {combatTest} from '../rules/combat-test.mjs?v=20261014.32';
+import * as R from '../rules/engine.mjs?v=20261014.32';import * as C from '../rules/campaign.mjs?v=20261014.32';import {choose} from '../controllers/ai.mjs?v=20261014.32';
 const catalog=await fetch(new URL('../../data/catalog.json?v=20261014.23',import.meta.url)).then(r=>{if(!r.ok)throw Error('無法讀取規則');return r.json()});
 let state=null,page='title',mode={kind:'move'},selected='fighter',msg='',sheet=false,busy=false,sound=false,audio=null,osc=null,track=null,aiTimer=null;const root=document.querySelector('#app');
 let sheetPage=0,backpack=false;
