@@ -1,4 +1,4 @@
-import {heldWeapons} from './equipment.mjs?v=20261014.20';
+import {heldWeapons} from './equipment.mjs?v=20261014.21';
 export const sizeRank=u=>({tiny:0,small:1,medium:2,large:3,huge:4,gargantuan:5}[u.size||'medium']??2);
 export const grapplers=(s,u)=>(u.grapples||[]).filter(g=>{const p=s.units.find(v=>v.id===g.actor);return p&&p.hp>0&&!p.dead&&Math.max(Math.abs(p.x-u.x),Math.abs(p.y-u.y))<=1;});
 export const grabbed=(s,u)=>grapplers(s,u).length>0;
