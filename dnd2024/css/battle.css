@@ -88,3 +88,11 @@
  .combat-logstrip header button,.combat-logpanel header button{min-height:23px;font-size:10px}
  .combat-logpanel{max-height:calc(100% - 68px)}
 }
+
+/* Spell menu separates shared resources, cantrips and prepared spells. */
+.spell-resources{display:grid;grid-template-columns:1fr auto;gap:4px 12px;padding:9px 10px;background:#182e32;border:1px solid #7d9da0;border-radius:6px;font-size:14px;color:#dceaea}
+.spell-resources small{grid-column:1/-1;color:#bbd1cf;font-size:12px}
+.spell-group{margin:4px 0 0;padding:3px 6px;border-bottom:1px solid #66735b;font-size:14px;color:#e5cd95}
+.spell-reaction{margin:0;padding:7px 10px;background:#283632;border-radius:6px;font-size:12px;line-height:1.6;color:#c5cfbf}
+
+@media(min-width:600px) and (min-height:501px){.spell-dock button{height:48px;min-height:48px}.spell-dock button span{font-size:17px}.spell-dock button small{font-size:11px}}

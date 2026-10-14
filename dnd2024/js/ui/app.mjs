@@ -1,7 +1,7 @@
 import {paperDollHTML,playMotion,normalizeAppearance} from './paperdoll.mjs';
 import {newDraft,creatorHTML} from './creator.mjs';
 import {planWalk,advanceWalk} from '../rules/movement.mjs';
-import {battleHTML,newBattleUI} from './battle.mjs?v=20261014.12';
+import {battleHTML,newBattleUI} from './battle.mjs?v=20261014.13';
 import {combatTest} from '../rules/combat-test.mjs?v=20261014.5';
 import * as R from '../rules/engine.mjs';import * as C from '../rules/campaign.mjs';import {choose} from '../controllers/ai.mjs';
 const catalog=await fetch(new URL('../../data/catalog.json',import.meta.url)).then(r=>{if(!r.ok)throw Error('無法讀取規則');return r.json()});
