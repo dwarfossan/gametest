@@ -1,4 +1,4 @@
-import {mainWeapon,heldWeapons} from '../rules/equipment.mjs';
+import {mainWeapon,heldWeapons} from '../rules/equipment.mjs?v=20261014.20';
 import {humanLook,dollSVG,DOLL_DUR} from '../art/fuwa-paperdoll.mjs';
 const weaponArt={longsword:'sword',shortsword:'shortsword',longbow:'longbow',shortbow:'bow',quarterstaff:'quarterstaff',mace:'mace',scimitar:'scimitar',lightcrossbow:'crossbow',none:null};
 const armorArt={chain:'鏈甲',chainshirt:'鏈甲衫',leather:'皮甲',none:null};

@@ -101,3 +101,5 @@
 .spell-scroll::-webkit-scrollbar{width:10px}.spell-scroll::-webkit-scrollbar-track{background:#17251f;border-radius:6px}.spell-scroll::-webkit-scrollbar-thumb{background:#a08d60;border-radius:6px}
 @media(min-width:600px) and (orientation:landscape){.spell-scroll{--spell-row:64px}}
 @media(min-width:600px) and (orientation:landscape) and (max-height:500px){.spell-scroll{--spell-row:44px;max-height:min(calc(5 * var(--spell-row) + 24px),90px)}}
+
+.combat-ground-item{position:absolute;pointer-events:none;color:#f2cb82;text-shadow:0 1px 3px #000;font-size:18px;z-index:1}

@@ -3,7 +3,7 @@ export const heldWeapons=u=>u.heldWeapons??[0];
 export const mainWeapon=u=>heldWeapons(u).includes(u.activeWeapon)?u.activeWeapon:heldWeapons(u)[0];
 export const ownsShield=(u,c)=>c.presets.find(p=>p.id===u.id)?.shield??u.ownsShield??!!u.shield;
 export function attackEquipment(u,c,index,{bonus=false,reaction=false,battle=true}={}){
- const w=c.weapons[u.weapons[index]];if(!w)return {error:'沒有這把武器'};
+ const w=c.weapons[u.weapons[index]];if(!w)return {error:'沒有這把武器'};if(u.droppedWeapons?.includes(index))return {error:'武器在地上，須先拾取'};
  let held=[...heldWeapons(u)],operations=[];
  if(w.twoHanded&&u.shield)return {error:'雙手武器攻擊前須先卸盾（1 主要動作）'};
  if(bonus||reaction){if(!held.includes(index))return {error:'須先拔出並持握這把武器'};}

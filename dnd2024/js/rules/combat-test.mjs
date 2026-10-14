@@ -1,4 +1,4 @@
-import * as R from './engine.mjs?v=20261014.17';
+import * as R from './engine.mjs?v=20261014.20';
 // Development fixture only: uses the normal initiative and dispatch rules.
 export function combatTest(c){
  c.map={...R.copy(c.map),width:16,height:16,walls:[],door:[0,0],cache:[0,15],foes:[[7,6],[10,6]],spawns:[[7,9],[8,9],[6,10],[9,10]]};

@@ -1,4 +1,5 @@
-import * as R from './engine.mjs?v=20261014.17';
+import {moveCost,heldTargets} from './grapple.mjs?v=20261014.20';
+import * as R from './engine.mjs?v=20261014.20';
 const directions=[[0,-1],[1,0],[0,1],[-1,0],[1,-1],[1,1],[-1,1],[-1,-1]];
 // Search through the same single-step validator used by dispatch and AI.
 // No dice or game-state mutation is needed to display movement range.
@@ -7,11 +8,11 @@ export function movementRange(s,c,actor){
  if(s.page!=='battle'||s.pending||!u||!R.alive(u)||R.current(s)?.id!==actor)return out;
  const start={x:u.x,y:u.y,cost:0,path:[]};out.set(`${u.x},${u.y}`,start);const queue=[start];
  for(let i=0;i<queue.length;i++){
-  const at=queue[i];if(at.cost+5>u.move)continue;
-  const virtual={...s,units:s.units.map(t=>t.id===actor?{...u,x:at.x,y:at.y}:t)};
+  const at=queue[i];if(at.cost+moveCost(s,u)>u.move)continue;
+  const virtual={...s,units:s.units.map(t=>t.id===actor?{...u,x:at.x,y:at.y}:heldTargets(s,u).includes(t)?{...t,x:t.x+at.x-u.x,y:t.y+at.y-u.y}:t)};
   for(const [dx,dy] of directions){const x=at.x+dx,y=at.y+dy,key=`${x},${y}`;
    if(out.has(key)||R.validate(virtual,c,{kind:'move',actor,x,y}))continue;
-   const next={x,y,cost:at.cost+5,path:[...at.path,{x,y}]};out.set(key,next);queue.push(next);
+   const next={x,y,cost:at.cost+moveCost(s,u),path:[...at.path,{x,y}]};out.set(key,next);queue.push(next);
   }
  }
  return out;
