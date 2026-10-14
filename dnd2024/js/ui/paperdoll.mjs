@@ -1,5 +1,5 @@
 import {mainWeapon,heldWeapons} from '../rules/equipment.mjs?v=20261014.23';
-import {humanLook,dollSVG,DOLL_DUR} from '../art/fuwa-paperdoll.mjs?v=20261014.29';
+import {humanLook,dollSVG,DOLL_DUR} from '../art/fuwa-paperdoll.mjs?v=20261014.30';
 const weaponArt={longsword:'sword',shortsword:'shortsword',longbow:'longbow',shortbow:'bow',quarterstaff:'quarterstaff',mace:'mace',scimitar:'scimitar',lightcrossbow:'crossbow',none:null};
 const armorArt={chain:'鏈甲',chainshirt:'鏈甲衫',leather:'皮甲',none:null};
 let serial=0;
@@ -11,4 +11,4 @@ export function paperDollHTML(u={},opts={}){
  const sid='fuwa'+(++serial);
  return raw.replace('class="doll','data-rig data-unit="'+(['fighter','rogue','cleric','wizard'].includes(u.id)?u.id:'')+'" data-species="'+species+'" data-motion="idle" class="portrait fuwa-doll doll').replace(/id="([^"]+)"/g,(_,name)=>`id="${sid}-${name}"`);
 }
-export function playMotion(container,motion,unitId=null){const k=({block:'guard',slash:'slash',shoot:'shoot',walk:'walk',cast:'cast'})[motion];if(!k)return;container.querySelectorAll('[data-rig]:not(.dl-down)').forEach(el=>{if(unitId&&el.dataset.unit!==unitId)return;const act=el.querySelector('.dl-act');if(!act)return;clearTimeout(el._motionTimer);act.className.baseVal='dl-act';void el.getBoundingClientRect();act.classList.add('act-'+k);act.style.setProperty('--d','0ms');el.dataset.motion=motion;el._motionTimer=setTimeout(()=>{act.classList.remove('act-'+k);el.dataset.motion='idle';},DOLL_DUR[k]||600);});}
+export function playMotion(container,motion,unitId=null){const k=({block:'guard',slash:'slash',shoot:'shoot',walk:'walk',cast:'cast',jump:'hop'})[motion];if(!k)return;container.querySelectorAll('[data-rig]:not(.dl-down)').forEach(el=>{if(unitId&&el.dataset.unit!==unitId)return;const act=el.querySelector('.dl-act');if(!act)return;clearTimeout(el._motionTimer);act.className.baseVal='dl-act';void el.getBoundingClientRect();act.classList.add('act-'+k);act.style.setProperty('--d','0ms');el.dataset.motion=motion;el._motionTimer=setTimeout(()=>{act.classList.remove('act-'+k);el.dataset.motion='idle';},DOLL_DUR[k]||600);});}

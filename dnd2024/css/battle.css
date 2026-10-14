@@ -105,3 +105,5 @@
 .combat-ground-item{position:absolute;pointer-events:none;color:#f2cb82;text-shadow:0 1px 3px #000;font-size:18px;z-index:1}
 
 .combat-dock .dock-prompt{font-size:14px;line-height:1.5;margin:0;padding:6px 4px;color:#e8e0cd;white-space:normal}
+
+.combat-tile.difficult{background:#867454;background-image:radial-gradient(#b4a081 20%,transparent 22%);background-size:9px 7px}.combat-tile.gap{background:#071217;box-shadow:inset 0 0 0 2px #52646b}.combat-tile.difficult.can-move{background-color:#398db8}

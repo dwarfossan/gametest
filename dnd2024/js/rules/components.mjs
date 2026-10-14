@@ -1,5 +1,5 @@
 import {hasGear,items,inventory} from './items.mjs?v=20261014.23';
-import {handsUsed} from './grapple.mjs?v=20261014.23';
+import {handsUsed} from './grapple.mjs?v=20261014.30';
 export function componentProblem(s,u,sp){
  const components=sp.components||'';
  if(components.includes('V')&&(u.silenced||u.statuses?.some(v=>(v.k||v)==='silenced')))return '言語成分需要能說話';
