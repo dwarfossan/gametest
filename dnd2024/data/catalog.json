@@ -114,7 +114,8 @@
       "mastery": "vex",
       "sourcePage": 89,
       "sourceDocument": "SRD 5.2.1",
-      "implementationStatus": "prototype"
+      "implementationStatus": "prototype",
+      "light": true
     },
     "shortbow": {
       "name": "短弓",
@@ -164,7 +165,8 @@
       "reach": 1,
       "sourcePage": 261,
       "sourceDocument": "SRD 5.2.1",
-      "implementationStatus": "prototype"
+      "implementationStatus": "prototype",
+      "light": true
     },
     "lightcrossbow": {
       "name": "輕弩",

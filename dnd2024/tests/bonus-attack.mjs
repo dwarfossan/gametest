@@ -1,0 +1,6 @@
+import fs from 'node:fs';import assert from 'node:assert/strict';import * as R from '../js/rules/engine.mjs';import {combatTest} from '../js/rules/combat-test.mjs';
+const c=JSON.parse(fs.readFileSync(new URL('../data/catalog.json',import.meta.url)));const s=combatTest(c),u=R.current(s),t=R.unit(s,'enemy0');u.weapons=['shortsword','shortsword'];u.shield=false;u.scores.DEX=16;t.x=u.x;t.y=u.y-1;t.hp=t.maxHp=1000;
+const a={kind:'attack',actor:u.id,target:t.id,weapon:1,bonus:true};const before=R.copy(s);assert(!R.dispatch(s,c,a).ok);assert.deepEqual(s,before);assert(R.dispatch(s,c,{...a,weapon:0,bonus:false}).ok);assert.equal(u.action,0);assert.equal(u.bonus,1);assert(R.validate(s,c,{...a,weapon:0}));
+const normal=R.copy(s);R.unit(normal,u.id).action=1;R.dispatch(normal,c,{...a,bonus:false});assert(R.dispatch(s,c,a).ok);assert.equal(u.bonus,0);assert.equal(u.action,0);assert.equal(t.hp-R.unit(normal,t.id).hp,3);assert(R.validate(s,c,a));
+const negative=R.copy(before);const n=R.unit(negative,u.id);n.scores.DEX=8;n.lightAttack=0;const control=R.copy(negative);R.dispatch(control,c,{...a,bonus:false});R.dispatch(negative,c,a);assert.equal(R.unit(negative,t.id).hp,R.unit(control,t.id).hp);
+console.log('Bonus attack: prerequisite, different weapon, resource cost, positive/negative damage modifiers, repeat rejection passed');
