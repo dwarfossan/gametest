@@ -474,8 +474,8 @@ function dollSVG(o){
   if(o.look?.render)return o.look.render(o);
   const L = o.look || critterLook(o.id, o.color, o.mood), c = L.skin, INK="#2a2630";
   const gear = armorArt(o.armor), anc = {...DEFAULT_ANCHOR, ...(L.anchor||{})};
-  const main = o.main, off = o.off, h = main && HELD[main];
-  const two = h && h.two && !off;
+  const main = o.main, off = o.off, baseHand = main && HELD[main], h = baseHand && o.twoHanded===true && !baseHand.two ? {...baseHand,two:baseHand.gy+24} : baseHand;
+  const two = h && h.two && !off && (o.twoHanded??true);
   const now = Date.now(), level = leveling(o), cheer = o.cheer || level;
   // 主手：武器跟著手一起轉
   let arm;

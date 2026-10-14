@@ -87,7 +87,11 @@
       "mastery": "sap",
       "sourcePage": 89,
       "sourceDocument": "SRD 5.2.1",
-      "implementationStatus": "prototype"
+      "implementationStatus": "prototype",
+      "versatile": [
+        1,
+        10
+      ]
     },
     "longbow": {
       "name": "長弓",
@@ -155,7 +159,11 @@
       "reach": 1,
       "sourcePage": 89,
       "sourceDocument": "SRD 5.2.1",
-      "implementationStatus": "prototype"
+      "implementationStatus": "prototype",
+      "versatile": [
+        1,
+        8
+      ]
     },
     "scimitar": {
       "name": "彎刀",

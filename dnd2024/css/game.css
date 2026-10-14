@@ -35,6 +35,6 @@ body,.cs-card{font-family:GameTC,CardTC,system-ui,sans-serif}
 
 .cs-inventory>div{height:41px;min-height:41px;padding:4px;box-sizing:border-box}
 
-@font-face{font-family:PossessionTC;src:url('../assets/possession-font.woff?v=20261014.32') format('woff')}body,.cs-card,.help-tooltip{font-family:GameTC,CardTC,PossessionTC,system-ui,sans-serif}
+@font-face{font-family:PossessionTC;src:url('../assets/possession-font.woff?v=20261014.34') format('woff')}body,.cs-card,.help-tooltip{font-family:GameTC,CardTC,PossessionTC,system-ui,sans-serif}
 
 .cs-skill-help{min-height:22px;padding:0 5px;font-size:10px;border-radius:4px}

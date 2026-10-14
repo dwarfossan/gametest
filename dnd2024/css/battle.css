@@ -115,3 +115,5 @@
 /* Always-visible drag rail for compact and expanded combat history. */
 .combat-logbody{overflow-y:scroll;overflow-x:hidden;scrollbar-gutter:stable;scrollbar-width:auto;scrollbar-color:#b6a274 #14231e;padding-right:5px;overscroll-behavior:contain}
 .combat-logbody::-webkit-scrollbar{width:12px}.combat-logbody::-webkit-scrollbar-track{background:#14231e;border-radius:6px}.combat-logbody::-webkit-scrollbar-thumb{background:#b6a274;border:2px solid #14231e;border-radius:6px;min-height:24px}.combat-logbody::-webkit-scrollbar-thumb:hover{background:#deca98}
+
+.weapon-attack-entry{display:grid;gap:4px;padding-bottom:7px;border-bottom:1px solid #617159}.grip-switch{display:flex;gap:4px}.combat-dock .grip-switch button{flex:1;min-height:32px;height:auto;padding:4px 7px}.combat-dock .grip-switch button span{font-size:11px}.combat-dock .grip-switch button.selected{border-color:#e0c07f;background:#675535}
