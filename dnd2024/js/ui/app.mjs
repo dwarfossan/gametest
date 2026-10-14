@@ -1,6 +1,6 @@
 import {bindTooltips} from './tooltips.mjs?v=20261014.27';
 import {sheetHTML as characterSheetHTML} from './sheet.mjs?v=20261014.27';
-import {paperDollHTML,playMotion,normalizeAppearance} from './paperdoll.mjs?v=20261014.23';
+import {paperDollHTML,playMotion,normalizeAppearance} from './paperdoll.mjs?v=20261014.28';
 import {newDraft,creatorHTML} from './creator.mjs?v=20261014.23';
 import {planWalk,advanceWalk} from '../rules/movement.mjs?v=20261014.27';
 import {battleHTML,newBattleUI} from './battle.mjs?v=20261014.27';

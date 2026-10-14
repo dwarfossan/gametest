@@ -1,4 +1,4 @@
-import {ITEM_ART} from '../art/fuwa-paperdoll.mjs?v=20261014.23';
+import {ITEM_ART} from '../art/fuwa-paperdoll.mjs?v=20261014.28';
 // Existing Fuwa silhouettes/palette; container variants below are provisional art.
 const bottle='<path d="M36 13H62V25H58V40Q83 54 76 78Q72 88 49 88Q23 88 22 71Q20 51 40 40V25H36Z" fill="#f6e9d8"/><path d="M25 63Q49 55 76 63V75Q72 85 49 85Q29 85 25 75Z" fill="#d66368"/><path d="M38 12H60V25H38Z" fill="#a0703f"/>';
 const net='<g transform="translate(60 60) scale(2.6)"><circle r="13" fill="#d9c08e" stroke-width="2.5"/><path d="M-12 -4 Q0 -9 12 -4 M-12 4 Q0 9 12 4 M-5 -12 Q-9 0 -5 12 M5 -12 Q9 0 5 12" stroke="#8a6a44" stroke-width="2" fill="none"/><path d="M10 8 Q16 12 18 18" stroke="#8a6a44" stroke-width="2.5" fill="none" stroke-linecap="round"/></g>';
