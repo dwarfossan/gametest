@@ -1,9 +1,9 @@
-import {bindTooltips} from './tooltips.mjs?v=20261014.23';
+import {bindTooltips} from './tooltips.mjs?v=20261014.24';
 import {sheetHTML as characterSheetHTML} from './sheet.mjs?v=20261014.23';
 import {paperDollHTML,playMotion,normalizeAppearance} from './paperdoll.mjs?v=20261014.23';
 import {newDraft,creatorHTML} from './creator.mjs?v=20261014.23';
 import {planWalk,advanceWalk} from '../rules/movement.mjs?v=20261014.23';
-import {battleHTML,newBattleUI} from './battle.mjs?v=20261014.23';
+import {battleHTML,newBattleUI} from './battle.mjs?v=20261014.24';
 import {combatTest} from '../rules/combat-test.mjs?v=20261014.5';
 import * as R from '../rules/engine.mjs?v=20261014.23';import * as C from '../rules/campaign.mjs?v=20261014.23';import {choose} from '../controllers/ai.mjs?v=20261014.23';
 const catalog=await fetch(new URL('../../data/catalog.json?v=20261014.23',import.meta.url)).then(r=>{if(!r.ok)throw Error('無法讀取規則');return r.json()});
