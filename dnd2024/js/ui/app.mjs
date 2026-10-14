@@ -1,11 +1,11 @@
-import {sheetHTML as characterSheetHTML} from './sheet.mjs?v=20261014.17';
-import {paperDollHTML,playMotion,normalizeAppearance} from './paperdoll.mjs?v=20261014.17';
+import {sheetHTML as characterSheetHTML} from './sheet.mjs?v=20261014.18';
+import {paperDollHTML,playMotion,normalizeAppearance} from './paperdoll.mjs?v=20261014.18';
 import {newDraft,creatorHTML} from './creator.mjs';
 import {planWalk,advanceWalk} from '../rules/movement.mjs';
-import {battleHTML,newBattleUI} from './battle.mjs?v=20261014.17';
+import {battleHTML,newBattleUI} from './battle.mjs?v=20261014.18';
 import {combatTest} from '../rules/combat-test.mjs?v=20261014.5';
-import * as R from '../rules/engine.mjs?v=20261014.17';import * as C from '../rules/campaign.mjs';import {choose} from '../controllers/ai.mjs?v=20261014.17';
-const catalog=await fetch(new URL('../../data/catalog.json?v=20261014.17',import.meta.url)).then(r=>{if(!r.ok)throw Error('無法讀取規則');return r.json()});
+import * as R from '../rules/engine.mjs?v=20261014.18';import * as C from '../rules/campaign.mjs';import {choose} from '../controllers/ai.mjs?v=20261014.18';
+const catalog=await fetch(new URL('../../data/catalog.json?v=20261014.18',import.meta.url)).then(r=>{if(!r.ok)throw Error('無法讀取規則');return r.json()});
 let state=null,page='title',mode={kind:'move'},selected='fighter',msg='',sheet=false,busy=false,sound=false,audio=null,osc=null,track=null,aiTimer=null;const root=document.querySelector('#app');
 let sheetPage=0;
 let wheelFrame=null,wheelChange=0,wheelPoint=null;let walkTimer=null;let combatUI=newBattleUI();let draft=newDraft(catalog);const originalMap=R.copy(catalog.map);let testing=false;

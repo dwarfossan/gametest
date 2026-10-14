@@ -24,3 +24,5 @@
 .cs-card{font-family:GameTC,CardTC,system-ui,sans-serif}
 
 body,.cs-card{font-family:GameTC,CardTC,system-ui,sans-serif}
+
+.cs-switch{position:absolute;right:0;top:0;z-index:4}.cs-switch>summary{list-style:none;cursor:pointer;border:1px solid #a18a60;border-radius:6px;background:#17251f;width:28px;height:28px;display:grid;place-items:center}.cs-switch>summary::-webkit-details-marker{display:none}.cs-switch svg{width:21px;height:21px}.cs-switch-menu{position:absolute;right:0;top:32px;width:230px;padding:8px;display:grid;gap:6px;background:#17251f;border:1px solid #a18a60;border-radius:8px;box-shadow:0 5px 15px #0009}.cs-switch-menu button{min-height:32px;font-size:13px;padding:5px}.cs-switch-menu small{font-size:11px;color:#cbbd93}.cs-right{top:35px}

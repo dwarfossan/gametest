@@ -1,5 +1,5 @@
-import {heldWeapons,ownsShield} from '../rules/equipment.mjs';
-import * as R from '../rules/engine.mjs?v=20261014.17';
+import {heldWeapons,ownsShield,mainWeapon} from '../rules/equipment.mjs';
+import * as R from '../rules/engine.mjs?v=20261014.18';
 import {movementRange} from '../rules/movement.mjs';
 export const newBattleUI=()=>({menu:'root',info:null,log:false,system:false,zoom:1,walk:null});
 export function commandAvailable(s,c,u,intent){if(u.side!=='party'||u.control!=='manual'||!R.alive(u)||s.pending||R.current(s)?.id!==u.id)return false;if(['attack','spell'].includes(intent.kind))return s.units.some(t=>!R.validate(s,c,{actor:u.id,...intent,target:t.id}));return !R.validate(s,c,{actor:u.id,...intent});}
@@ -8,14 +8,14 @@ export function battleHTML(s,c,selected,mode,ui,{esc,doll,testing,sound,msg}){
  const button=(label,cmd,note='',disabled=false,cls='')=>`<button data-do="${cmd}" ${disabled?'disabled':''} class="${cls}"><span>${label}</span>${note?`<small>${note}</small>`:''}</button>`;
  const menu=(label,key,note='',disabled=false)=>`<button data-battle-menu="${key}" ${disabled?'disabled':''}><span>${label}</span>${note?`<small>${note}</small>`:''}</button>`;
  const legal=intent=>commandAvailable(s,c,u,intent),back=menu('← 返回','root');
- const attacks=u.weapons.map((key,i)=>button(c.weapons[key].name,'weapon:'+i,'1 行動',!legal({kind:'attack',weapon:i}))).join('');
+ const currentWeapon=mainWeapon(u),attacks=button('攻擊','weapon:'+currentWeapon,currentWeapon===undefined?'未持握武器':c.weapons[u.weapons[currentWeapon]].name+' · 1 主要動作',currentWeapon===undefined||!legal({kind:'attack',weapon:currentWeapon}));
  let heading='',body='';
  if(walking){heading='移動中';body='<p class="dock-note">沿合法路徑移動</p>'+button('停止移動','stop-walk','保留已花費的移動');}
  else if(!mine&&ui.menu!=='status'){heading=active?.control==='ai'?'AI 行動中':'選取角色';body=menu('角色狀態','status',u.name)+(u.side==='party'?button(u.control==='ai'?'接手手動':'交給 AI','control',u.id===s.hero?'主角保持手動':'',u.id===s.hero):'');}
  else if(ui.menu==='root'){body=menu('動作','actions',u.action?'行動可用':'行動已使用')+menu('走位','move',`剩 ${u.move} 呎`)+menu('法術','spells','戲法／準備法術',!(u.cantrips?.length||u.spells?.length))+menu('狀態','status',`HP ${u.hp}/${u.maxHp}`)+button('結束回合','end','保留未使用的反應',false,'end-turn');}
  else if(ui.menu==='move'){heading='走位';body=button('移動','move',`每格 5 呎 · 剩 ${u.move} 呎`,u.move<5||!mine)+button('疾走','dash','1 行動 · 增加移動',!legal({kind:'dash'}))+button('撤離','disengage','1 行動 · 避免機會攻擊',!legal({kind:'disengage'}))+(u.prone?button('起身','stand','花費移動',!legal({kind:'stand'})):'')+back;}
  else if(ui.menu==='actions'){heading='動作';body=menu('主要動作','main-actions',u.action?'可用':'已使用')+menu('附贈動作','bonus-actions',u.bonus?'可用':'已使用')+back;}
- else if(ui.menu==='main-actions'){heading='主要動作';body=attacks+menu('附贈攻擊','bonus-attacks','輕型武器額外攻擊')+button('閃避','dodge','1 主要動作',!legal({kind:'dodge'}))+menu('武器與盾牌','equipment','拔出／收起／穿卸盾牌')+menu('← 返回動作','actions');}
+ else if(ui.menu==='main-actions'){heading='主要動作';body=attacks+menu('附贈攻擊','bonus-attacks','輕型武器額外攻擊')+button('閃避','dodge','1 主要動作',!legal({kind:'dodge'}))+menu('← 返回動作','actions');}
  else if(ui.menu==='equipment'){heading='武器與盾牌';body=u.weapons.map((k,i)=>{const held=heldWeapons(u).includes(i),kind=held?'stow':'draw';return button((held?'收起 ':'拔出 ')+c.weapons[k].name,'gear:'+kind+':'+i,u.attackGearAvailable?'攻擊附帶拔收':!u.objectUsed?'本回合物件互動':'1 主要動作',!legal({kind,weapon:i}));}).join('')+(ownsShield(u,c)?button(u.shield?'卸下盾牌':'穿上盾牌','gear:shield','1 主要動作',!legal({kind:'shield'})):'')+menu('← 返回動作','actions');}
  else if(ui.menu==='bonus-actions'){heading='附贈動作';body=menu('附贈攻擊','bonus-attacks','輕型武器額外攻擊')+(u.class==='fighter'?button('回氣','secondwind',`1 附贈動作 · 剩 ${u.secondWind} 次`,!legal({kind:'secondwind'})):'')+(u.spells||[]).filter(k=>c.spells[k].bonus).map(k=>button(c.spells[k].name,'spell:'+k,'1 附贈動作 · 消耗法術位',!legal({kind:'spell',spell:k}))).join('')+menu('← 返回動作','actions');}
  else if(ui.menu==='bonus-attacks'){heading='附贈攻擊';const weapons=u.weapons.map((k,i)=>({k,i})).filter(({k})=>c.weapons[k].light);body=(weapons.length?weapons.map(({k,i})=>button(c.weapons[k].name,'bonus-weapon:'+i,'1 附贈動作',!legal({kind:'attack',weapon:i,bonus:true}))).join(''):button('附贈攻擊','','沒有可用的輕型武器',true))+'<p class="dock-note">須先用主要動作以輕型武器攻擊，再用另一把輕型武器攻擊。正的屬性調整值不加入傷害。</p>'+menu('← 返回動作','actions');}
