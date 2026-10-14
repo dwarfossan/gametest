@@ -4,3 +4,7 @@ This Font Software is licensed under the SIL Open Font License, Version 1.1. Thi
 
 http://scripts.sil.org/OFL
 Subset generated for this project; derived from Noto Sans CJK TC.
+
+ui-cjk.woff2: Noto Sans TC Traditional Chinese coverage, distributed by @fontsource/noto-sans-tc under the SIL Open Font License. This unmodified font replaces the earlier UI subset as the primary Chinese UI font to cover the new motion and appearance controls.
+
+2026-10-14: ui-font.woff now merges Noto Sans TC 400 weight language chunks from @fontsource/noto-sans-tc, retaining SIL OFL licensing, to support new UI and custom names.
