@@ -3,3 +3,6 @@
 @media(max-width:430px){.combat-head .eyebrow{font-size:9px}.combat-bottom{gap:5px}.economy-row{gap:3px}.economy{min-width:30px;padding:1px 4px}.selected-unit{min-width:95px}.combat-dock{width:137px}.initiative{min-width:100px}}
 
 .combat-map{top:max(24px,calc((100% - 388px)/2));transform:translateX(-50%) scale(var(--map-zoom));transform-origin:center top}.combat-world{min-height:420px}
+
+/* Range is derived from the validator, rather than a geometric radius. */
+.combat-map{top:24px}.combat-tile.can-move{background:#398db8;color:#f0f9ff;box-shadow:inset 0 0 0 1px #9eddf6}.combat-tile.can-move:nth-child(2n){background:#4398bf}.combat-tile .move-cost{position:absolute;inset:0;line-height:31px;text-align:center;font-size:10px;font-weight:600;pointer-events:none;text-shadow:0 1px 2px #133749}.combat-tile.is-path,.combat-tile.can-move.is-path:nth-child(2n){background:#d7b966;color:#1c312d}.combat-tile.is-path .move-cost{text-shadow:none;color:#203a32}.move-preview{position:absolute;z-index:22;left:8px;top:42px;padding:4px 8px;border-radius:7px;background:#182c29e8;color:#bfe9f7;font-size:10px;max-width:calc(100% - 16px);pointer-events:none}

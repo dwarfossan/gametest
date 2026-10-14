@@ -25,3 +25,5 @@
 
 ## 戰鬥介面（20261014.4）
 戰鬥 UI 使用上方先攻列、大地圖、右下分層指令列與底部 D&D 資源。僅參考毛絨絨版面，不引入其自訂規則。UI 模組為 js/ui/battle.mjs，樣式 css/battle.css；檢查 node dnd2024/tests/battle-ui.mjs。
+
+移動範圍：js/rules/movement.mjs 共用單步驗證器搜尋合法路徑；檢查 node dnd2024/tests/movement.mjs。戰鬥測試場為 16×16，藍格標記總移動花費，點選可逐格移動並暫停處理反應。
