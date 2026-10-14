@@ -103,3 +103,5 @@
 @media(min-width:600px) and (orientation:landscape) and (max-height:500px){.spell-scroll{--spell-row:44px;max-height:min(calc(5 * var(--spell-row) + 24px),90px)}}
 
 .combat-ground-item{position:absolute;pointer-events:none;color:#f2cb82;text-shadow:0 1px 3px #000;font-size:18px;z-index:1}
+
+.combat-dock .dock-prompt{font-size:14px;line-height:1.5;margin:0;padding:6px 4px;color:#e8e0cd;white-space:normal}
