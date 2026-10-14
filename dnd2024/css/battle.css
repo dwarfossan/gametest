@@ -56,16 +56,35 @@
  .move-preview{top:46px;font-size:10px;padding:3px 7px}
 }
 
-/* Size controls to their labels rather than stretching them across the dock. */
-.combat-dock,.combat-dock:has(.end-turn){width:max-content;max-width:min(290px,calc(100% - 16px))}
-.combat-dock>div{justify-items:start}
-.combat-dock button{width:max-content;max-width:100%;min-width:0;padding-left:10px;padding-right:10px}
+/* Compact dock; each button uses the width of the longest label in its column. */
+.combat-dock,.combat-dock:has(.end-turn){width:max-content;max-width:min(290px,calc(100% - 16px));bottom:68px}
+.combat-dock>div{justify-items:stretch}
+.combat-dock button{width:100%;max-width:100%;min-width:0;height:41px;padding-left:10px;padding-right:10px}
+.combat-bottom{bottom:0}
+.combat-logstrip,.combat-logpanel{position:absolute;left:8px;right:auto;bottom:68px;z-index:26;width:calc(20em + 20px);width:calc(20ic + 20px);max-width:calc(100% - 16px);box-sizing:border-box;background:#1b2d26f5;border:1px solid #8b805d;border-radius:9px;padding:7px 9px;font-size:12px;display:flex;flex-direction:column;align-items:stretch;gap:5px;overflow:hidden;box-shadow:0 4px 14px #0005}
+.combat-logstrip{height:auto;max-height:none}
+.combat-logstrip header,.combat-logpanel header{display:flex;align-items:center;justify-content:space-between;gap:12px;flex:none;line-height:1.5}
+.combat-logstrip header b,.combat-logpanel header b{font-size:inherit}
+.combat-logstrip header button,.combat-logpanel header button{font-size:11px;min-height:25px;padding:1px 7px}
+.combat-logbody{min-height:0;overflow:auto;line-height:1.5;font-size:inherit;overflow-wrap:anywhere;white-space:normal}
+.combat-logbody.preview{height:7.5em;flex:none;overflow:hidden}
+.combat-logbody p{margin:0;line-height:inherit;color:#d3ddcb}
+.combat-logbody p:last-child{color:#f2e2b6}
+.combat-logpanel{height:auto;max-height:calc(100% - 78px)}
+.combat-logpanel .combat-logbody{flex:1}
 @media(min-width:600px) and (orientation:landscape){
- .combat-dock,.combat-dock:has(.end-turn){width:max-content;max-width:min(310px,calc(100% - 24px))}
- .combat-dock button{padding-left:10px;padding-right:10px}
+ .combat-dock,.combat-dock:has(.end-turn){width:max-content;max-width:min(310px,calc(100% - 24px));bottom:88px}
+ .combat-dock button{height:64px;padding-left:10px;padding-right:10px}
+ .combat-logstrip,.combat-logpanel{bottom:88px;font-size:14px;width:calc(20em + 20px);width:calc(20ic + 20px)}
+ .combat-logstrip header button,.combat-logpanel header button{font-size:12px;min-height:28px}
+ .combat-logpanel{max-height:calc(100% - 98px)}
 }
 @media(min-width:600px) and (orientation:landscape) and (max-height:500px){
- .combat-dock,.combat-dock:has(.end-turn){width:max-content;max-width:calc(100% - 14px)}
- .combat-dock:has(.end-turn)>div{grid-template-columns:repeat(2,max-content)}
- .combat-dock button{padding-left:8px;padding-right:8px}
+ .combat-dock,.combat-dock:has(.end-turn){width:max-content;max-width:calc(100% - 14px);bottom:60px;max-height:calc(100% - 68px)}
+ .combat-dock:has(.end-turn)>div{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .combat-dock .end-turn{grid-column:auto}
+ .combat-dock button{height:44px;padding-left:8px;padding-right:8px}
+ .combat-logstrip,.combat-logpanel{bottom:60px;font-size:11px;padding:5px 8px;gap:4px;width:calc(20em + 18px);width:calc(20ic + 18px)}
+ .combat-logstrip header button,.combat-logpanel header button{min-height:23px;font-size:10px}
+ .combat-logpanel{max-height:calc(100% - 68px)}
 }
