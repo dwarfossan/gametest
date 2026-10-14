@@ -6,3 +6,52 @@
 
 /* Range is derived from the validator, rather than a geometric radius. */
 .combat-map{top:24px}.combat-tile.can-move{background:#398db8;color:#f0f9ff;box-shadow:inset 0 0 0 1px #9eddf6}.combat-tile.can-move:nth-child(2n){background:#4398bf}.combat-tile .move-cost{position:absolute;inset:0;line-height:31px;text-align:center;font-size:10px;font-weight:600;pointer-events:none;text-shadow:0 1px 2px #133749}.combat-tile.is-path,.combat-tile.can-move.is-path:nth-child(2n){background:#d7b966;color:#1c312d}.combat-tile.is-path .move-cost{text-shadow:none;color:#203a32}.move-preview{position:absolute;z-index:22;left:8px;top:42px;padding:4px 8px;border-radius:7px;background:#182c29e8;color:#bfe9f7;font-size:10px;max-width:calc(100% - 16px);pointer-events:none}
+
+/* Landscape is the primary combat layout: use the available desktop space. */
+@media(min-width:600px) and (orientation:landscape){
+ #app[data-battle="true"]{padding:10px}
+ .combat-screen{gap:7px}
+ .combat-head h2{font-size:22px}.combat-head .eyebrow{font-size:12px}
+ .combat-head button{min-height:42px;padding:6px 15px;font-size:15px}
+ .initiative{min-width:140px;min-height:64px;grid-template-columns:46px auto;gap:0 8px;padding:5px 9px}
+ .initiative .portrait{width:46px;height:52px}.initiative span{font-size:16px}.initiative small{font-size:12px}
+ .combat-turn{padding:6px 12px;font-size:16px}.combat-turn span{font-size:13px}
+ .combat-dock{width:clamp(230px,15vw,290px);right:12px;bottom:124px;max-height:calc(100% - 136px);padding:10px;border-radius:14px}
+ .combat-dock h3{font-size:17px;padding:6px 4px}.combat-dock>div{gap:8px}
+ .combat-dock button{min-height:64px;padding:9px 14px;border-radius:9px}
+ .combat-dock button span{font-size:20px;line-height:1.35}.combat-dock button small{font-size:13px;line-height:1.4}
+ .dock-note{font-size:15px;padding:8px}
+ .combat-bottom{min-height:76px;bottom:36px;gap:18px;padding:7px 12px}
+ .selected-unit{gap:8px;min-width:150px}.selected-unit .portrait{width:52px;height:58px}
+ .selected-unit b{font-size:17px}.selected-unit small{font-size:12px}
+ .economy-row{gap:8px}.economy{min-width:58px;padding:5px 9px}
+ .economy small{font-size:12px}.economy b{font-size:17px}
+ .combat-logstrip{height:36px;font-size:12px;gap:10px;padding:4px 8px}
+ .combat-logstrip button{min-height:29px;font-size:12px;padding:2px 9px}
+ .map-tools{font-size:12px;gap:7px}.map-tools button{min-height:36px;padding:2px 12px;font-size:18px}
+ .move-preview{top:52px;font-size:12px;padding:5px 9px}
+ .combat-system button{min-height:44px;font-size:16px}.combat-info{font-size:15px;max-width:320px}
+}
+/* Short landscape screens keep larger tap targets in a compact two-column dock. */
+@media(min-width:600px) and (orientation:landscape) and (max-height:500px){
+ #app[data-battle="true"]{padding:5px}.combat-screen{gap:5px}
+ .combat-head h2{font-size:16px}.combat-head .eyebrow{font-size:10px}
+ .combat-head button{min-height:34px;padding:3px 11px;font-size:13px}
+ .initiative{min-width:112px;min-height:46px;grid-template-columns:32px auto;gap:0 5px;padding:3px 7px}
+ .initiative .portrait{width:32px;height:38px}.initiative span{font-size:13px}.initiative small{font-size:10px}
+ .combat-turn{padding:3px 8px;font-size:13px}.combat-turn span{font-size:11px}
+ .combat-dock,.combat-dock:has(.end-turn){width:220px;right:7px;bottom:84px;max-height:calc(100% - 90px);padding:6px}
+ .combat-dock:has(.end-turn)>div{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .combat-dock .end-turn{grid-column:1/-1}
+ .combat-dock>div{gap:5px}.combat-dock h3{font-size:13px;padding:3px}
+ .combat-dock button{min-height:44px;padding:5px 9px}.combat-dock button span{font-size:15px}
+ .combat-dock button small{font-size:10px}.dock-note{font-size:12px;padding:5px}
+ .combat-bottom{min-height:48px;bottom:30px;gap:12px;padding:4px 8px}
+ .selected-unit{min-width:126px;gap:5px}.selected-unit .portrait{width:36px;height:38px}
+ .selected-unit b{font-size:14px}.selected-unit small{font-size:10px}
+ .economy-row{gap:5px}.economy{min-width:44px;padding:4px 6px;gap:5px}
+ .economy small{font-size:11px}.economy b{font-size:14px}
+ .combat-logstrip{height:30px;font-size:11px}.combat-logstrip button{min-height:24px;font-size:11px;padding:1px 7px}
+ .map-tools{font-size:10px;gap:5px}.map-tools button{min-height:30px;font-size:16px;padding:1px 10px}
+ .move-preview{top:46px;font-size:10px;padding:3px 7px}
+}
