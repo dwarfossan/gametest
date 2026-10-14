@@ -95,4 +95,9 @@
 .spell-group{margin:4px 0 0;padding:3px 6px;border-bottom:1px solid #66735b;font-size:14px;color:#e5cd95}
 .spell-reaction{margin:0;padding:7px 10px;background:#283632;border-radius:6px;font-size:12px;line-height:1.6;color:#c5cfbf}
 
-@media(min-width:600px) and (min-height:501px){.spell-dock button{height:48px;min-height:48px}.spell-dock button span{font-size:17px}.spell-dock button small{font-size:11px}}
+/* Five spell buttons per viewport; extra entries use a visible vertical scrollbar. */
+.spell-scroll{--spell-row:41px;display:grid;grid-auto-rows:var(--spell-row);gap:6px;max-height:calc(5 * var(--spell-row) + 24px);overflow-y:auto;scrollbar-gutter:stable;scrollbar-width:auto;min-height:0;padding-right:3px}
+.spell-scroll button{height:var(--spell-row);min-height:var(--spell-row)}
+.spell-scroll::-webkit-scrollbar{width:10px}.spell-scroll::-webkit-scrollbar-track{background:#17251f;border-radius:6px}.spell-scroll::-webkit-scrollbar-thumb{background:#a08d60;border-radius:6px}
+@media(min-width:600px) and (orientation:landscape){.spell-scroll{--spell-row:64px}}
+@media(min-width:600px) and (orientation:landscape) and (max-height:500px){.spell-scroll{--spell-row:44px;max-height:min(calc(5 * var(--spell-row) + 24px),90px)}}
