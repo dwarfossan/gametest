@@ -117,3 +117,7 @@
 .combat-logbody::-webkit-scrollbar{width:12px}.combat-logbody::-webkit-scrollbar-track{background:#14231e;border-radius:6px}.combat-logbody::-webkit-scrollbar-thumb{background:#b6a274;border:2px solid #14231e;border-radius:6px;min-height:24px}.combat-logbody::-webkit-scrollbar-thumb:hover{background:#deca98}
 
 .weapon-attack-entry{display:grid;gap:4px;padding-bottom:7px;border-bottom:1px solid #617159}.grip-switch{display:flex;gap:4px}.combat-dock .grip-switch button{flex:1;min-height:32px;height:auto;padding:4px 7px}.combat-dock .grip-switch button span{font-size:11px}.combat-dock .grip-switch button.selected{border-color:#e0c07f;background:#675535}
+
+.combat-tile.spell-area{background:#d18a3dc9!important;box-shadow:inset 0 0 0 2px #ffda91!important}.combat-tile.spell-selected{background:#8b6cc8!important;box-shadow:inset 0 0 0 2px #ddc4ff!important}.combat-token.spell-caught .portrait{filter:drop-shadow(0 0 5px #ff704d)}.spell-selection,.spell-friendly{font-size:12px;line-height:1.6;max-width:220px;overflow-wrap:anywhere}.spell-friendly{color:#ffd09a}
+/* Match the source game's aiming flow: give selection controls room on phones. */
+.combat-stage:has([data-do="spell-confirm"]) .combat-logstrip,.combat-stage:has([data-do="spell-confirm"]) .combat-logpanel{display:none}
