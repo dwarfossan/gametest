@@ -60,3 +60,5 @@ body,.cs-card{font-family:GameTC,CardTC,system-ui,sans-serif}
 .dice-choice-layer [data-prompt-dice]{display:flex;align-items:center;gap:14px}.dice-choice-layer [data-prompt-dice]>.dice-row{flex:none}
 
 @font-face{font-family:StateTC;src:url('../assets/state-font.woff?v=20261016.47') format('woff');font-display:swap}body,.cs-card,.help-tooltip{font-family:GameTC,CardTC,PossessionTC,StateTC,system-ui,sans-serif}
+
+@font-face{font-family:ScrollTC;src:url('../assets/scroll-font.woff?v=20261016.49') format('woff');font-display:swap}body,.cs-card,.help-tooltip{font-family:GameTC,CardTC,PossessionTC,StateTC,ScrollTC,system-ui,sans-serif}

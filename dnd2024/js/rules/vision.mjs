@@ -1,4 +1,4 @@
-import {hasCondition} from './conditions.mjs?v=20261016.48';
+import {hasCondition} from './conditions.mjs?v=20261016.49';
 export function ray(a,b){const out=[];let x=a.x,y=a.y,dx=Math.abs(b.x-x),dy=-Math.abs(b.y-y),sx=x<b.x?1:-1,sy=y<b.y?1:-1,err=dx+dy;out.push({x,y});while(x!==b.x||y!==b.y){const e=err*2;if(e>=dy){err+=dy;x+=sx;}if(e<=dx){err+=dx;y+=sy;}out.push({x,y});}return out;}
 const distance=(a,b)=>Math.max(Math.abs(a.x-b.x),Math.abs(a.y-b.y),Math.abs((a.z||0)-(b.z||0))/5)*5;
 export const coverName=n=>n===Infinity?'全掩蔽':n===5?'四分之三掩蔽':n===2?'半掩蔽':'無掩蔽';

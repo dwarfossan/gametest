@@ -1,4 +1,4 @@
-import {hasCondition} from './conditions.mjs?v=20261016.48';
+import {hasCondition} from './conditions.mjs?v=20261016.49';
 // Typed damage, after save/other modifiers, before temporary HP and concentration.
 export const damageTypes=Object.freeze({acid:'強酸',bludgeoning:'鈍擊',cold:'寒冷',fire:'火焰',force:'力場',lightning:'閃電',necrotic:'黯蝕',piercing:'穿刺',poison:'毒素',psychic:'心靈',radiant:'光耀',slashing:'揮砍',thunder:'雷鳴'});
 export const damageTraitKeys=Object.freeze({resistances:'抗性',damageImmunities:'免疫',vulnerabilities:'易傷'});

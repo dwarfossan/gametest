@@ -1,4 +1,4 @@
-import {statusSnapshot,publishStatus,trackStatus} from './status-events.mjs?v=20261016.48';
+import {statusSnapshot,publishStatus,trackStatus} from './status-events.mjs?v=20261016.49';
 // Rule operations replay only up to a decision. No partial damage/resource changes
 // escape the draft, and previously answered dice consume the same seeded stream.
 const operations=new Map(),contexts=new WeakMap(),feeds=new WeakMap();

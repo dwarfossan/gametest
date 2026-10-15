@@ -1,4 +1,4 @@
-import {conditions,hasCondition,exhaustion} from './conditions.mjs?v=20261016.48';
+import {conditions,hasCondition,exhaustion} from './conditions.mjs?v=20261016.49';
 const feeds=new WeakMap(),tracking=new WeakMap();
 export const statusFeed=s=>feeds.get(s);
 export function statusKeys(u){if(u.dead)return [];const list=Object.keys(conditions).filter(k=>k!=='exhaustion'&&hasCondition(u,k));if(exhaustion(u))list.push('exhaustion:'+exhaustion(u));for(const k of ['bless','guidance','magearmor','light','shieldSpell','dodge','disengage','ready','concentration','sap','slow','guiding','vex'])if(u[k])list.push(k);if(u.helpedBy?.length)list.push('helped');return list;}

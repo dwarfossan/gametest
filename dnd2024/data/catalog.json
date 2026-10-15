@@ -406,6 +406,60 @@
       "sourcePage": 129,
       "sourceDocument": "SRD 5.2.1",
       "implementationStatus": "prototype"
+    },
+    "rayofsickness": {
+      "name": "致病射線",
+      "level": 1,
+      "kind": "attack",
+      "range": 12,
+      "dice": [
+        2,
+        8
+      ],
+      "components": "VS",
+      "damageType": "poison",
+      "classes": [
+        "wizard"
+      ],
+      "condition": "poisoned",
+      "description": "遠程法術攻擊，命中造成 2d8 毒素傷害，並中毒至施法者下回合結束；沒有額外體質豁免。",
+      "sourceDocument": "SRD 5.2.1",
+      "implementationStatus": "prototype"
+    },
+    "colorspray": {
+      "name": "七彩噴射",
+      "level": 1,
+      "kind": "cone",
+      "range": 3,
+      "components": "VSM",
+      "save": "CON",
+      "classes": [
+        "wizard"
+      ],
+      "condition": "blinded",
+      "description": "十五呎錐形內所有生物做體質豁免，失敗目盲至施法者下回合結束；不造成傷害，會波及友軍。",
+      "sourceDocument": "SRD 5.2.1",
+      "implementationStatus": "prototype"
+    },
+    "lesserrestoration": {
+      "name": "次級復原術",
+      "level": 2,
+      "kind": "restore",
+      "range": 1,
+      "components": "VS",
+      "bonus": true,
+      "classes": [
+        "cleric"
+      ],
+      "restores": [
+        "blinded",
+        "deafened",
+        "paralyzed",
+        "poisoned"
+      ],
+      "description": "附贈動作接觸一名生物，選擇解除一種：目盲、耳聾、麻痺或中毒。不恢復生命，也不解除其他狀態。",
+      "sourceDocument": "SRD 5.2.1",
+      "implementationStatus": "prototype"
     }
   },
   "presets": [

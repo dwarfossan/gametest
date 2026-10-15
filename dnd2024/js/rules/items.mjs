@@ -1,4 +1,4 @@
-import {hasCondition} from './conditions.mjs?v=20261016.48';
+import {hasCondition} from './conditions.mjs?v=20261016.49';
 export const items={healingPotion:{name:'治療藥水',weight:.5,description:'附贈動作：自己飲用，或餵給五呎內生物，恢復 2d4＋2 生命。'},net:{name:'網子',weight:3,description:'取代一次攻擊：投向十五呎內可見生物。敏捷豁免 DC＝8＋敏捷調整值＋熟練加值，失敗陷入束縛；巨型以上自動成功。目標或五呎內生物可花主要動作做 DC 10 運動檢定解除。網子 AC 10、HP 5，免疫鈍擊、毒素、心靈傷害。'}};
 export const inventory=u=>u.inventory||{};
 export const restrained=u=>hasCondition(u,'restrained');
@@ -20,3 +20,10 @@ export function hasGear(u,name){const normalized=aliases[name]||name;return Obje
 export const ammoContainer=(c,key)=>({bow:'quiver',crossbow:'boltCase',pouch:'ammoPouch'}[c.weapons[key]?.ammoFor]||c.weapons[key]?.ammoFor)||({longbow:'quiver',shortbow:'quiver',lightcrossbow:'boltCase',handcrossbow:'boltCase',heavycrossbow:'boltCase',sling:'ammoPouch',blowgun:'ammoPouch',musket:'ammoPouch',pistol:'ammoPouch'})[key];
 export function ammoProblem(u,c,key){const container=ammoContainer(c,key);return container&&!hasGear(u,container)?'需要道具欄持有'+(items[container]?.name||container):'';}
 export function startingInventory(c,u){const list={adventureKit:1};for(const key of u.weapons||[]){const container=ammoContainer(c,key);if(container)list[container]=1;}if(u.cantrips){list.componentPouch=1;if(u.class==='cleric')list.holySymbol=1;}return list;}
+
+// DMG 2024 spell scrolls: fixed DC 13 / attack +5 at levels one and two.
+Object.assign(items,{
+ sicknessScroll:{name:'致病射線卷軸',weight:0,spell:'rayofsickness',description:'主要動作；法師可用。遠程法術攻擊＋5，命中 2d8 毒素傷害及中毒，至施法者下回合結束。消耗卷軸，不耗法術位。'},
+ colorScroll:{name:'七彩噴射卷軸',weight:0,spell:'colorspray',description:'主要動作；法師可用。十五呎錐形，體質豁免 DC 13，失敗目盲至施法者下回合結束；會波及友軍。消耗卷軸，不耗法術位。'},
+ restorationScroll:{name:'次級復原術卷軸',weight:0,spell:'lesserrestoration',description:'附贈動作；牧師可用。五呎內選一種解除：目盲、耳聾、麻痺或中毒。一等牧師須做感知檢定 DC 12，無論成敗均消耗卷軸，不耗法術位。需要空手與言語、姿勢。'}
+});
