@@ -1,4 +1,4 @@
-import {current,alive,distance,validate,unit,climbPlan} from '../rules/engine.mjs?v=20261015.46';
+import {current,alive,distance,validate,unit,climbPlan} from '../rules/engine.mjs?v=20261016.47';
 // No hidden state access: visible targets only; returns a command, never mutates rules.
 export function choose(s,c){const u=current(s);if(!u)return null;const intent=(kind,extra={})=>({actor:u.id,kind,...extra}),legal=a=>!validate(s,c,a);const freeNet=intent('netescape',{target:u.id});if(legal(freeNet))return freeNet;const escape=intent('escape');if(legal(escape))return escape;if(u.prone){const a=intent('stand');if(legal(a))return a;}
  if(u.climbing){const a=intent('climb',u.climbing.target);if(legal(a))return a;}

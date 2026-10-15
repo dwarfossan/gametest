@@ -232,7 +232,8 @@
       "sourcePage": 159,
       "sourceDocument": "SRD 5.2.1",
       "implementationStatus": "prototype",
-      "damageType": "radiant"
+      "damageType": "radiant",
+      "requiresSight": true
     },
     "light": {
       "name": "光亮術",
@@ -292,7 +293,8 @@
       "components": "V",
       "sourcePage": 139,
       "sourceDocument": "SRD 5.2.1",
-      "implementationStatus": "prototype"
+      "implementationStatus": "prototype",
+      "requiresSight": true
     },
     "bless": {
       "name": "祝福術",
@@ -356,7 +358,8 @@
       "sourcePage": 146,
       "sourceDocument": "SRD 5.2.1",
       "implementationStatus": "prototype",
-      "damageType": "force"
+      "damageType": "force",
+      "requiresSight": true
     },
     "burninghands": {
       "name": "燃燒之手",

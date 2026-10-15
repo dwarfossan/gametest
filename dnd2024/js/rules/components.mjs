@@ -1,8 +1,9 @@
-import {hasGear,items,inventory} from './items.mjs?v=20261015.46';
-import {handsUsed} from './grapple.mjs?v=20261014.34';
+import {incapacitated} from './conditions.mjs?v=20261016.47';
+import {hasGear,items,inventory} from './items.mjs?v=20261016.47';
+import {handsUsed} from './grapple.mjs?v=20261016.47';
 export function componentProblem(s,u,sp){
  const components=sp.components||'';
- if(components.includes('V')&&(u.silenced||u.statuses?.some(v=>(v.k||v)==='silenced')))return '言語成分需要能說話';
+ if(components.includes('V')&&(incapacitated(u)||u.silenced||u.statuses?.some(v=>(v.k||v)==='silenced')))return '言語成分需要能說話';
  if(components.includes('S')&&handsUsed(s,u)>=2&&!u.warCaster)return '姿勢成分需要空手';
  if(components.includes('M')){
   if(handsUsed(s,u)>=2)return '取用施法材料需要空手';
