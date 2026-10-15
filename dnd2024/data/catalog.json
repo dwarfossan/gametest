@@ -91,7 +91,8 @@
       "versatile": [
         1,
         10
-      ]
+      ],
+      "damageType": "slashing"
     },
     "longbow": {
       "name": "長弓",
@@ -106,7 +107,8 @@
       "sourcePage": 89,
       "sourceDocument": "SRD 5.2.1",
       "implementationStatus": "prototype",
-      "twoHanded": true
+      "twoHanded": true,
+      "damageType": "piercing"
     },
     "shortsword": {
       "name": "短劍",
@@ -120,7 +122,8 @@
       "sourcePage": 89,
       "sourceDocument": "SRD 5.2.1",
       "implementationStatus": "prototype",
-      "light": true
+      "light": true,
+      "damageType": "piercing"
     },
     "shortbow": {
       "name": "短弓",
@@ -135,7 +138,8 @@
       "sourcePage": 89,
       "sourceDocument": "SRD 5.2.1",
       "implementationStatus": "prototype",
-      "twoHanded": true
+      "twoHanded": true,
+      "damageType": "piercing"
     },
     "mace": {
       "name": "硬頭錘",
@@ -147,7 +151,8 @@
       "reach": 1,
       "sourcePage": 89,
       "sourceDocument": "SRD 5.2.1",
-      "implementationStatus": "prototype"
+      "implementationStatus": "prototype",
+      "damageType": "bludgeoning"
     },
     "quarterstaff": {
       "name": "長棍",
@@ -163,7 +168,8 @@
       "versatile": [
         1,
         8
-      ]
+      ],
+      "damageType": "bludgeoning"
     },
     "scimitar": {
       "name": "彎刀",
@@ -176,7 +182,8 @@
       "sourcePage": 261,
       "sourceDocument": "SRD 5.2.1",
       "implementationStatus": "prototype",
-      "light": true
+      "light": true,
+      "damageType": "slashing"
     },
     "lightcrossbow": {
       "name": "輕弩",
@@ -190,7 +197,8 @@
       "sourcePage": 261,
       "sourceDocument": "SRD 5.2.1",
       "implementationStatus": "prototype",
-      "twoHanded": true
+      "twoHanded": true,
+      "damageType": "piercing"
     }
   },
   "spells": {
@@ -206,7 +214,8 @@
       "components": "VS",
       "sourcePage": 132,
       "sourceDocument": "SRD 5.2.1",
-      "implementationStatus": "prototype"
+      "implementationStatus": "prototype",
+      "damageType": "fire"
     },
     "sacredflame": {
       "name": "聖火",
@@ -222,7 +231,8 @@
       "ignoresCover": true,
       "sourcePage": 159,
       "sourceDocument": "SRD 5.2.1",
-      "implementationStatus": "prototype"
+      "implementationStatus": "prototype",
+      "damageType": "radiant"
     },
     "light": {
       "name": "光亮術",
@@ -310,7 +320,8 @@
       "components": "VS",
       "sourcePage": 138,
       "sourceDocument": "SRD 5.2.1",
-      "implementationStatus": "prototype"
+      "implementationStatus": "prototype",
+      "damageType": "radiant"
     },
     "magearmor": {
       "name": "法師護甲",
@@ -344,7 +355,8 @@
       "components": "VS",
       "sourcePage": 146,
       "sourceDocument": "SRD 5.2.1",
-      "implementationStatus": "prototype"
+      "implementationStatus": "prototype",
+      "damageType": "force"
     },
     "burninghands": {
       "name": "燃燒之手",
@@ -359,7 +371,8 @@
       "components": "VS",
       "sourcePage": 114,
       "sourceDocument": "SRD 5.2.1",
-      "implementationStatus": "prototype"
+      "implementationStatus": "prototype",
+      "damageType": "fire"
     },
     "thunderwave": {
       "name": "雷鳴波",
@@ -374,7 +387,8 @@
       "components": "VS",
       "sourcePage": 169,
       "sourceDocument": "SRD 5.2.1",
-      "implementationStatus": "prototype"
+      "implementationStatus": "prototype",
+      "damageType": "thunder"
     },
     "falselife": {
       "name": "虛假生命",

@@ -1,4 +1,4 @@
-import {hasGear,items,inventory} from './items.mjs?v=20261014.23';
+import {hasGear,items,inventory} from './items.mjs?v=20261015.46';
 import {handsUsed} from './grapple.mjs?v=20261014.34';
 export function componentProblem(s,u,sp){
  const components=sp.components||'';
