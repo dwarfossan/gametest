@@ -17,3 +17,5 @@ export function bindDice(root,s,active=true){cancel();if(!s||!active)return;cons
  if(!pending){const offsets=book.schedules.get(key),items=[...target.children],show=i=>{if(target.isConnected)target.scrollTo({left:items[i].offsetLeft-target.offsetLeft,behavior:'auto'});};let current=0;offsets.forEach((start,i)=>{if(reduced||start<=elapsed)current=i;else timers.push(setTimeout(()=>show(i),start-elapsed+34));});show(current);}
  if(pending){const buttons=[...root.querySelectorAll('.inspiration-prompt button')],remaining=Math.max(0,duration-elapsed);buttons.forEach(b=>b.disabled=remaining>0);if(remaining){const timer=setTimeout(()=>{if(!host.isConnected||s.pending!==pending)return;buttons.forEach(b=>b.disabled=false);buttons[0]?.focus({preventScroll:true});},remaining+34);timers.push(timer);}}
 }
+
+export function diceWait(root,s){if(!s||!root.querySelector('.dice-result-panel')||matchMedia('(prefers-reduced-motion: reduce)').matches)return 0;const feed=diceFeed(s),book=ledger(s),key='result:'+feed?.serial,offsets=book.schedules.get(key);if(!offsets)return 0;return Math.max(0,offsets.at(-1)+duration-(performance.now()-book.times.get(key)));}
