@@ -1,4 +1,4 @@
-import {spellPlanHTML,paintSpellArea,spellChoiceProblem} from './spell-aim.mjs?v=20261015.41';
+import {spellPlanHTML,paintSpellArea,spellChoiceProblem} from './spell-aim.mjs?v=20261015.44';
 import {terrainArt,lift} from './terrain-art.mjs?v=20261014.32';
 import {heightAt,tileTerrain,terrainDescription,horizontal} from '../rules/terrain.mjs?v=20261014.32';
 import {difficult} from '../rules/grapple.mjs?v=20261014.34';
@@ -7,8 +7,8 @@ import {itemIcon} from './item-icons.mjs?v=20261014.23';
 import {items,inventory,restrained} from '../rules/items.mjs?v=20261014.23';
 import {grabbed,heldTargets} from '../rules/grapple.mjs?v=20261014.34';
 import {heldWeapons,ownsShield,mainWeapon,twoHandGrip,weaponDice} from '../rules/equipment.mjs?v=20261014.34';
-import * as R from '../rules/engine.mjs?v=20261015.41';
-import {movementRange,jumpRange} from '../rules/movement.mjs?v=20261015.41';
+import * as R from '../rules/engine.mjs?v=20261015.44';
+import {movementRange,jumpRange} from '../rules/movement.mjs?v=20261015.44';
 export const newBattleUI=()=>({menu:'root',info:null,log:false,system:false,teamOpen:false,zoom:1,camera:null,walk:null});
 export function commandAvailable(s,c,u,intent){if(u.side!=='party'||u.control!=='manual'||!R.alive(u)||s.pending||R.current(s)?.id!==u.id)return false;if(intent.kind==='ready'&&intent.response==='spell')return s.units.some(t=>!R.validate(s,c,{actor:u.id,...intent,target:t.id}));if(intent.target)return !R.validate(s,c,{actor:u.id,...intent});if(['attack','spell','shove','grapple','disarm','item','netescape','netbreak','help','help-skill'].includes(intent.kind))return s.units.some(t=>!R.validate(s,c,{actor:u.id,...intent,target:t.id}));return !R.validate(s,c,{actor:u.id,...intent});}
 export function battleHTML(s,c,selected,mode,ui,{esc,doll,testing,sound,msg}){
