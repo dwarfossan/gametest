@@ -121,3 +121,7 @@
 .combat-tile.spell-area{background:#d18a3dc9!important;box-shadow:inset 0 0 0 2px #ffda91!important}.combat-tile.spell-selected{background:#8b6cc8!important;box-shadow:inset 0 0 0 2px #ddc4ff!important}.combat-token.spell-caught .portrait{filter:drop-shadow(0 0 5px #ff704d)}.spell-selection,.spell-friendly{font-size:12px;line-height:1.6;max-width:220px;overflow-wrap:anywhere}.spell-friendly{color:#ffd09a}
 /* Match the source game's aiming flow: give selection controls room on phones. */
 .combat-stage:has([data-do="spell-confirm"]) .combat-logstrip,.combat-stage:has([data-do="spell-confirm"]) .combat-logpanel{display:none}
+
+/* Translate the camera itself, including when the board fits in the viewport. */
+.combat-map-scroll{overflow:hidden;touch-action:none;user-select:none;cursor:grab}.combat-map-scroll.is-dragging,.combat-map-scroll.is-dragging *{cursor:grabbing!important}.combat-map-scroll .combat-world{width:100%;height:100%;min-width:0;min-height:0}.combat-world>.combat-map{left:0;top:0;transform:translate(var(--camera-x,0px),var(--camera-y,0px)) scale(var(--map-zoom));transform-origin:0 0}
+.combat-map-scroll{overflow:clip}

@@ -1,0 +1,14 @@
+// Camera offsets are screen pixels, independent of DOM scroll dimensions.
+export function zoomAt(camera,before,after,point){const ratio=after/before;return {x:point.x-(point.x-camera.x)*ratio,y:point.y-(point.y-camera.y)*ratio};}
+export function applyCamera(viewport,ui){const world=viewport.querySelector('.combat-world');if(!world||!ui.camera)return;world.style.setProperty('--camera-x',ui.camera.x+'px');world.style.setProperty('--camera-y',ui.camera.y+'px');world.style.setProperty('--map-zoom',ui.zoom);}
+export function centerCamera(viewport,ui,focus){ui.camera={x:viewport.clientWidth*.42-focus.x*ui.zoom,y:Math.max(70,(viewport.clientHeight-90)/2)+30-focus.y*ui.zoom};applyCamera(viewport,ui);}
+export function zoomCamera(viewport,ui,delta,clientX,clientY){if(!viewport||!ui.camera)return;const box=viewport.getBoundingClientRect(),point={x:(clientX??box.left+box.width/2)-box.left,y:(clientY??box.top+box.height/2)-box.top},next=Math.max(.5,Math.min(1.6,ui.zoom+delta));if(next===ui.zoom)return;ui.camera=zoomAt(ui.camera,ui.zoom,next,point);ui.zoom=next;applyCamera(viewport,ui);}
+let observer;
+export function bindCamera(viewport,ui,focus){observer?.disconnect();if(!ui.camera)centerCamera(viewport,ui,focus);else applyCamera(viewport,ui);let drag=null,suppressUntil=0;
+ viewport.addEventListener('pointerdown',e=>{if(e.button!==0||e.isPrimary===false)return;drag={id:e.pointerId,x:e.clientX,y:e.clientY,camera:{...ui.camera},moved:false};});
+ viewport.addEventListener('pointermove',e=>{if(!drag||e.pointerId!==drag.id)return;if(!drag.moved&&Math.hypot(e.clientX-drag.x,e.clientY-drag.y)>6){drag.moved=true;viewport.setPointerCapture(e.pointerId);viewport.classList.add('is-dragging');}if(drag.moved){e.preventDefault();ui.camera={x:drag.camera.x+e.clientX-drag.x,y:drag.camera.y+e.clientY-drag.y};applyCamera(viewport,ui);}});
+ const end=e=>{if(!drag||e.pointerId!==drag.id)return;if(drag.moved)suppressUntil=performance.now()+350;if(viewport.hasPointerCapture(e.pointerId))viewport.releasePointerCapture(e.pointerId);viewport.classList.remove('is-dragging');drag=null;};viewport.addEventListener('pointerup',end);viewport.addEventListener('pointercancel',end);
+ viewport.addEventListener('click',e=>{if(performance.now()<suppressUntil){suppressUntil=0;e.preventDefault();e.stopImmediatePropagation();}},true);
+ viewport.addEventListener('wheel',e=>{if(!e.deltaY)return;e.preventDefault();zoomCamera(viewport,ui,Math.max(-.15,Math.min(.15,-e.deltaY*.0015)),e.clientX,e.clientY);},{passive:false});
+ let width=viewport.clientWidth,height=viewport.clientHeight;observer=new ResizeObserver(()=>{if(!viewport.isConnected)return;const w=viewport.clientWidth,h=viewport.clientHeight;ui.camera.x+=(w-width)/2;ui.camera.y+=(h-height)/2;width=w;height=h;applyCamera(viewport,ui);});observer.observe(viewport);
+}
