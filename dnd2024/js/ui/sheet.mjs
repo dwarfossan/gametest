@@ -1,8 +1,8 @@
 import {itemIcon} from './item-icons.mjs?v=20261014.23';
-import {items,inventory,restrained} from '../rules/items.mjs?v=20261016.47';
-import {grapplers,heldTargets} from '../rules/grapple.mjs?v=20261016.47';
+import {items,inventory,restrained} from '../rules/items.mjs?v=20261016.48';
+import {grapplers,heldTargets} from '../rules/grapple.mjs?v=20261016.48';
 import {heldWeapons,twoHandGrip} from '../rules/equipment.mjs?v=20261014.34';
-import {validate,ac,mod,effectLabels,damageTraits,conditionDetails} from '../rules/engine.mjs?v=20261016.47';
+import {validate,ac,mod,effectLabels,damageTraits,conditionDetails} from '../rules/engine.mjs?v=20261016.48';
 const abilities={STR:'力量',DEX:'敏捷',CON:'體質',INT:'智力',WIS:'感知',CHA:'魅力'};
 const skills=[['athletics','運動','STR'],['acrobatics','特技','DEX'],['sleight','巧手','DEX'],['stealth','隱匿','DEX'],['arcana','奧秘','INT'],['history','歷史','INT'],['investigation','調查','INT'],['nature','自然','INT'],['religion','宗教','INT'],['animalhandling','馴獸','WIS'],['insight','洞悉','WIS'],['medicine','醫藥','WIS'],['perception','察覺','WIS'],['survival','求生','WIS'],['deception','欺瞞','CHA'],['intimidation','威嚇','CHA'],['performance','表演','CHA'],['persuasion','說服','CHA']];
 const signed=n=>n>=0?'+'+n:String(n);

@@ -1,6 +1,6 @@
-import {incapacitated} from './conditions.mjs?v=20261016.47';
-import {hasGear,items,inventory} from './items.mjs?v=20261016.47';
-import {handsUsed} from './grapple.mjs?v=20261016.47';
+import {incapacitated} from './conditions.mjs?v=20261016.48';
+import {hasGear,items,inventory} from './items.mjs?v=20261016.48';
+import {handsUsed} from './grapple.mjs?v=20261016.48';
 export function componentProblem(s,u,sp){
  const components=sp.components||'';
  if(components.includes('V')&&(incapacitated(u)||u.silenced||u.statuses?.some(v=>(v.k||v)==='silenced')))return '言語成分需要能說話';

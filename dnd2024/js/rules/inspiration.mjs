@@ -1,3 +1,4 @@
+import {statusSnapshot,publishStatus,trackStatus} from './status-events.mjs?v=20261016.48';
 // Rule operations replay only up to a decision. No partial damage/resource changes
 // escape the draft, and previously answered dice consume the same seeded stream.
 const operations=new Map(),contexts=new WeakMap(),feeds=new WeakMap();
@@ -9,9 +10,9 @@ export const registerOperation=(key,fn)=>operations.set(key,fn);
 function commit(s,draft){const units=new Map(s.units.map(u=>[u.id,u]));draft.units=draft.units.map(next=>{const u=units.get(next.id);if(!u)return next;for(const key of Object.keys(u))if(!(key in next))delete u[key];return Object.assign(u,next);});for(const key of Object.keys(s))if(!(key in draft))delete s[key];Object.assign(s,draft);}
 export function runOperation(s,c,op,args=[],decisions=[],base=s){
  const execute=operations.get(op);if(!execute)throw Error('未知規則操作：'+op);
- if(contexts.has(s)||!s.inspirationPrompts)return execute(s,c,...args);
+ if(contexts.has(s))return execute(s,c,...args);if(!s.inspirationPrompts)return trackStatus(s,()=>execute(s,c,...args));const statusBefore=statusSnapshot(s);
  const snapshot=structuredClone(base),draft=structuredClone(snapshot);const ctx={decisions,cursor:0,rows:[]};contexts.set(draft,ctx);
- try{const result=execute(draft,c,...args);commit(s,draft);publish(s,ctx.rows,snapshot.seed);return result;}
+ try{const result=execute(draft,c,...args);commit(s,draft);publishStatus(s,statusBefore);publish(s,ctx.rows,snapshot.seed);return result;}
  catch(e){if(!(e instanceof Pause))throw e;s.pending={kind:'inspiration',...e.offer,beforeRows:structuredClone(ctx.rows.slice(-6)),transaction:{base:snapshot,op,args:structuredClone(args),decisions:structuredClone(decisions)}};return {ok:true,paused:true};}
  finally{contexts.delete(draft);}
 }

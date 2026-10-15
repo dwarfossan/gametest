@@ -1,7 +1,7 @@
-import {registerOperation,runOperation} from './inspiration.mjs?v=20261016.47';
+import {registerOperation,runOperation} from './inspiration.mjs?v=20261016.48';
 import {heightAt} from './terrain.mjs?v=20261014.32';
-import {hasGear} from './items.mjs?v=20261016.47';
-import * as R from './engine.mjs?v=20261016.47';
+import {hasGear} from './items.mjs?v=20261016.48';
+import * as R from './engine.mjs?v=20261016.48';
 export const SETTINGS={recruitFee:0,rooms:5,chestGold:12,eventDC:12};
 export function start(s){s.campaign={location:'guild',recruited:[],run:0,loot:0,baseGold:s.gold,map:null,rooms:[],visited:[],check:null};return s;}
 export function recruit(s,id){const c=s.campaign;if(c.location!=='guild'||id===s.hero||c.recruited.includes(id)||!R.unit(s,id))return false;c.recruited.push(id);return true;}
