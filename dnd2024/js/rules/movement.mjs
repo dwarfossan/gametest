@@ -1,6 +1,6 @@
 import {heightAt} from './terrain.mjs?v=20261014.32';
 import {moveCost,heldTargets} from './grapple.mjs?v=20261014.34';
-import * as R from './engine.mjs?v=20261015.35';
+import * as R from './engine.mjs?v=20261015.37';
 const directions=[[0,-1],[1,0],[0,1],[-1,0],[1,-1],[1,1],[-1,1],[-1,-1]];
 // Search through the same single-step validator used by dispatch and AI.
 // No dice or game-state mutation is needed to display movement range.
