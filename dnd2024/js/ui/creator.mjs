@@ -1,15 +1,16 @@
-import {portraitHTML,portraitPickerHTML,defaultPortraitId} from './portraits.mjs?v=20261016.58';
+import {portraitHTML,portraitPickerHTML,defaultPortraitId,portraitFor} from './portraits.mjs?v=20261016.59';
 const steps=[['identity','身分'],['portrait','頭像'],['species','種族'],['class','職業'],['background','背景'],['scores','屬性'],['skills','技能'],['spells','法術'],['appearance','外觀']];
 const labels={STR:'力量',DEX:'敏捷',CON:'體魄',INT:'智力',WIS:'感知',CHA:'魅力'};
 const skills={athletics:'運動',intimidation:'威嚇',perception:'察覺',survival:'求生',medicine:'醫藥',history:'歷史',investigation:'調查',acrobatics:'特技',sleight:'巧手',stealth:'隱匿',religion:'宗教',arcana:'奧秘'};
-export function newDraft(c){return {hero:'fighter',step:'portrait',names:Object.fromEntries(c.presets.map(p=>[p.id,p.name])),zoom:1,portraits:Object.fromEntries(c.presets.map(p=>[p.id,defaultPortraitId(p.id)])),appearances:Object.fromEntries(c.presets.map(p=>[p.id,{sex:"male",hair:"01",beard:"braid",hairColor:"#171717"}])),previewGear:"sword-shield"};}
+export function newDraft(c){return {hero:'fighter',step:'portrait',names:Object.fromEntries(c.presets.map(p=>[p.id,p.name])),zoom:1,portraitFilters:{},portraits:Object.fromEntries(c.presets.map(p=>[p.id,defaultPortraitId(p.id)])),appearances:Object.fromEntries(c.presets.map(p=>[p.id,{sex:"male",hair:"01",beard:"braid",hairColor:"#171717"}])),previewGear:"sword-shield"};}
 export function creatorHTML(c,d,units,doll,esc){
  const appearance=d.appearances[d.hero];units.forEach(v=>{v.appearance=d.appearances[v.id];v.portraitId=d.portraits[v.id];});
  const p=c.presets.find(p=>p.id===d.hero),u=units.find(u=>u.id===d.hero),cl=c.classes[p.id];
  const info=(title,text)=>`<button class="help" data-help="${esc(text)}" aria-label="${esc(title)}說明">?</button>`;
  const fixed=(value,text)=>`<div class="choice fixed"><strong>${value}</strong>${info(value,text)}</div>`;
  let content='';
- if(d.step==='portrait')content=`<p class="note">先挑喜歡的人物頭像，再到外觀搭配戰場小人。頭像不會更改種族、性別或能力；也可切換職業模板替隊友挑選。</p>${portraitPickerHTML(d.portraits[d.hero])}`;
+ const chosen=portraitFor(u),filter=d.portraitFilters[d.hero]||{species:chosen.species,sex:chosen.sex};
+ if(d.step==='portrait')content=`<div class="appearance-controls portrait-filters"><label>種族<select data-portrait-filter="species" aria-label="頭像種族">${[["human","人類"],["elf","精靈"],["dwarf","矮人"]].map(([key,label])=>`<option value="${key}" ${filter.species===key?"selected":""}>${label}</option>`).join("")}</select></label><label>性別<select data-portrait-filter="sex" aria-label="頭像性別">${[["male","男性"],["female","女性"]].map(([key,label])=>`<option value="${key}" ${filter.sex===key?"selected":""}>${label}</option>`).join("")}</select></label></div><p class="note">依種族與性別挑選頭像，再到外觀搭配小人；篩選不會改變角色能力或已選頭像。</p><p class="portrait-current">已選：${chosen.label}</p>${portraitPickerHTML(d.portraits[d.hero],filter)}`;
  if(d.step==='identity')content=`<label class="name-label">主角名字<input data-draft-name value="${esc(d.names[d.hero])}" maxlength="20" aria-label="主角名字"></label>${info('名字','最多 20 字；名字會保留到探索與存檔。')}<h3>同行小隊</h3>${c.presets.filter(x=>x.id!==d.hero).map(x=>`<label class="companion-name">${c.classes[x.id].name}<input data-companion="${x.id}" aria-label="${c.classes[x.id].name}隊友名字" value="${esc(d.names[x.id])}" maxlength="20"></label>`).join('')}`;
  if(d.step==='species')content=fixed(c.species.name,'目前模板固定人類。其他種族的規則與自由選擇尚未接入。')+fixed('熟練','目前人類額外起源專長採熟練；技能配置沿用模板。');
  if(d.step==='class')content=`<div class="class-choices">${c.presets.map(x=>`<button data-create-class="${x.id}" class="choice ${d.hero===x.id?'selected':''}" aria-pressed="${d.hero===x.id}">${doll({...x,class:x.id,hp:1})}<span>${c.classes[x.id].name}</span></button>`).join('')}</div>${info('職業','選擇主角的職業模板；其餘三個職業會成為隊友。數值、裝備與法術即時顯示於右側。')}`;
