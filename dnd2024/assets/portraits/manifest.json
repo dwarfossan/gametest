@@ -1,0 +1,104 @@
+{
+  "version": 3,
+  "width": 512,
+  "height": 512,
+  "thumbnailSize": 128,
+  "portraits": [
+    {
+      "id": "dwarf-female-01",
+      "species": "dwarf",
+      "sex": "female",
+      "lineage": null,
+      "src": "portraits/dwarf-female-01.webp",
+      "thumbnail": "thumbs/dwarf-female-01.webp"
+    },
+    {
+      "id": "dwarf-female-02",
+      "species": "dwarf",
+      "sex": "female",
+      "lineage": null,
+      "src": "portraits/dwarf-female-02.webp",
+      "thumbnail": "thumbs/dwarf-female-02.webp"
+    },
+    {
+      "id": "dwarf-male-01",
+      "species": "dwarf",
+      "sex": "male",
+      "lineage": null,
+      "src": "portraits/dwarf-male-01.webp",
+      "thumbnail": "thumbs/dwarf-male-01.webp"
+    },
+    {
+      "id": "dwarf-male-02",
+      "species": "dwarf",
+      "sex": "male",
+      "lineage": null,
+      "src": "portraits/dwarf-male-02.webp",
+      "thumbnail": "thumbs/dwarf-male-02.webp"
+    },
+    {
+      "id": "elf-female-01",
+      "species": "elf",
+      "sex": "female",
+      "lineage": null,
+      "src": "portraits/elf-female-01.webp",
+      "thumbnail": "thumbs/elf-female-01.webp"
+    },
+    {
+      "id": "elf-female-02",
+      "species": "elf",
+      "sex": "female",
+      "lineage": "drow",
+      "src": "portraits/elf-female-02.webp",
+      "thumbnail": "thumbs/elf-female-02.webp"
+    },
+    {
+      "id": "elf-male-01",
+      "species": "elf",
+      "sex": "male",
+      "lineage": null,
+      "src": "portraits/elf-male-01.webp",
+      "thumbnail": "thumbs/elf-male-01.webp"
+    },
+    {
+      "id": "elf-male-02",
+      "species": "elf",
+      "sex": "male",
+      "lineage": null,
+      "src": "portraits/elf-male-02.webp",
+      "thumbnail": "thumbs/elf-male-02.webp"
+    },
+    {
+      "id": "human-female-01",
+      "species": "human",
+      "sex": "female",
+      "lineage": null,
+      "src": "portraits/human-female-01.webp",
+      "thumbnail": "thumbs/human-female-01.webp"
+    },
+    {
+      "id": "human-female-02",
+      "species": "human",
+      "sex": "female",
+      "lineage": null,
+      "src": "portraits/human-female-02.webp",
+      "thumbnail": "thumbs/human-female-02.webp"
+    },
+    {
+      "id": "human-male-01",
+      "species": "human",
+      "sex": "male",
+      "lineage": null,
+      "src": "portraits/human-male-01.webp",
+      "thumbnail": "thumbs/human-male-01.webp"
+    },
+    {
+      "id": "human-male-02",
+      "species": "human",
+      "sex": "male",
+      "lineage": null,
+      "src": "portraits/human-male-02.webp",
+      "thumbnail": "thumbs/human-male-02.webp"
+    }
+  ]
+}
