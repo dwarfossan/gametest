@@ -1,6 +1,6 @@
-import {conditions,hasCondition,entries} from '../rules/conditions.mjs?v=20261016.50';
-import {statusKeys,statusFeed} from '../rules/status-events.mjs?v=20261016.50';
-import {conditionDetails,effectNow,unit,damageTypes} from '../rules/engine.mjs?v=20261016.50';
+import {conditions,hasCondition,entries} from '../rules/conditions.mjs?v=20261016.51';
+import {statusKeys,statusFeed} from '../rules/status-events.mjs?v=20261016.51';
+import {conditionDetails,effectNow,unit,damageTypes} from '../rules/engine.mjs?v=20261016.51';
 // Reuses the source game's flat white icons, red/green badges and body-level SVG motifs.
 const stroke='fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"';
 const icons={

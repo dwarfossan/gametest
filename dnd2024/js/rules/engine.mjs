@@ -1,16 +1,16 @@
-import {trackStatus} from './status-events.mjs?v=20261016.50';
-import {conditions,entries,hasCondition,conditionImmune,incapacitated,exhaustion,immobile,autoFailSave,nearCritical,exposed,conditionLabels,validConditions} from './conditions.mjs?v=20261016.50';
-import {mappedCover,vision,obscureAt,coverName,validEnvironment} from './vision.mjs?v=20261016.50';
-import {damageTypes,damageProfile,damagePacket,packetText,damageText,damageTraits,validDamageTraits} from './damage.mjs?v=20261016.50';
-import {registerOperation,runOperation,resumeInspiration,inspirationDice,recordDice,diceFeed} from './inspiration.mjs?v=20261016.50';
+import {trackStatus} from './status-events.mjs?v=20261016.51';
+import {conditions,entries,hasCondition,conditionImmune,incapacitated,exhaustion,immobile,autoFailSave,nearCritical,exposed,conditionLabels,validConditions} from './conditions.mjs?v=20261016.51';
+import {mappedCover,vision,obscureAt,coverName,validEnvironment} from './vision.mjs?v=20261016.51';
+import {damageTypes,damageProfile,damagePacket,packetText,damageText,damageTraits,validDamageTraits} from './damage.mjs?v=20261016.51';
+import {registerOperation,runOperation,resumeInspiration,inspirationDice,recordDice,diceFeed} from './inspiration.mjs?v=20261016.51';
 import {areaKind,areaDirection,areaContains,areaCells} from './spell-targets.mjs?v=20261015.35';
 import {tileTerrain,isGap,heightAt,heightOf,horizontal} from './terrain.mjs?v=20261014.32';
 import {skills} from './skills.mjs?v=20261014.27';
-import {movementRange} from './movement.mjs?v=20261016.50';
-import {componentProblem} from './components.mjs?v=20261016.50';
-import {items,inventory,restrained,weaponDamageType,removeNet,ammoProblem,hasGear,startingInventory} from './items.mjs?v=20261016.50';
-import {sizeRank,grapplers,grabbed,heldTargets,handsUsed,moveCost,difficult,cleanGrapples} from './grapple.mjs?v=20261016.50';
-import {attackEquipment,gearProblem,applyGear,meleeWeapon,heldWeapons,mainWeapon,twoHandGrip,weaponDice} from './equipment.mjs?v=20261016.50';
+import {movementRange} from './movement.mjs?v=20261016.51';
+import {componentProblem} from './components.mjs?v=20261016.51';
+import {items,inventory,restrained,weaponDamageType,removeNet,ammoProblem,hasGear,startingInventory} from './items.mjs?v=20261016.51';
+import {sizeRank,grapplers,grabbed,heldTargets,handsUsed,moveCost,difficult,cleanGrapples} from './grapple.mjs?v=20261016.51';
+import {attackEquipment,gearProblem,applyGear,meleeWeapon,heldWeapons,mainWeapon,twoHandGrip,weaponDice} from './equipment.mjs?v=20261016.51';
 export {damageTypes,diceFeed,damageProfile,damagePacket,packetText,damageText,damageTraits,conditions,hasCondition,incapacitated,conditionLabels,coverName};
 // Sole rule authority. UI and AI submit the same validated commands.
 export const VERSION=1,KEY='dnd2024:srd521:save';

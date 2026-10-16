@@ -1,5 +1,5 @@
-import {hasCondition} from './conditions.mjs?v=20261016.50';
-import {items,inventory} from './items.mjs?v=20261016.50';
+import {hasCondition} from './conditions.mjs?v=20261016.51';
+import {items,inventory} from './items.mjs?v=20261016.51';
 export const damageTypes=Object.freeze({acid:'強酸',bludgeoning:'鈍擊',cold:'寒冷',fire:'火焰',force:'力場',lightning:'閃電',necrotic:'黯蝕',piercing:'穿刺',poison:'毒素',psychic:'心靈',radiant:'光耀',slashing:'揮砍',thunder:'雷鳴'});
 export const damageTraitKeys=Object.freeze({resistances:'抗性',damageImmunities:'免疫',vulnerabilities:'易傷'});
 const types=a=>Array.isArray(a)&&a.length>0&&a.every(k=>k==='all'||Object.hasOwn(damageTypes,k));
