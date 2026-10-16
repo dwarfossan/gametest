@@ -1,4 +1,3 @@
-import {fighterSpriteHTML,fighterSpriteEligible} from './fighter-sprite.mjs?v=20261016.55';
 import {hasCondition} from '../rules/conditions.mjs?v=20261016.51';
 import {mainWeapon,heldWeapons} from '../rules/equipment.mjs?v=20261016.51';
 import {humanLook,dollSVG,DOLL_DUR} from '../art/fuwa-paperdoll.mjs?v=20261014.34';
@@ -7,7 +6,6 @@ const armorArt={chain:'鏈甲',chainshirt:'鏈甲衫',leather:'皮甲',none:null
 let serial=0;
 export function normalizeAppearance(a={}){return {sex:a.sex==='female'?'female':'male',hair:/^(0[1-9]|10)$/.test(a.hair)?a.hair:'01',beard:['braid','full','none','long'].includes(a.beard)?a.beard:'braid',hairColor:/^#[0-9a-f]{6}$/i.test(a.hairColor||'')?a.hairColor:'#171717'};}
 export function paperDollHTML(u={},opts={}){
- if(fighterSpriteEligible(u,opts))return fighterSpriteHTML(u,opts);
  if(u.monster==='giantspider')return `<svg class="portrait fuwa-doll monster-spider" viewBox="0 0 140 140" aria-hidden="true"><g stroke="#292633" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none">${[0,1,2,3].map(i=>`<path d="M55 ${64+i*8}L${18-i*3} ${38+i*15}L${8+i*3} ${74+i*13}M85 ${64+i*8}L${122+i*3} ${38+i*15}L${132-i*3} ${74+i*13}"/>`).join('')}<ellipse cx="70" cy="63" rx="27" ry="34" fill="#695664"/><ellipse cx="70" cy="94" rx="24" ry="19" fill="#8d7484"/><circle cx="60" cy="92" r="5" fill="#e25d64"/><circle cx="80" cy="92" r="5" fill="#e25d64"/><path d="M59 107L62 119M81 107L78 119"/></g></svg>`;
  const a=normalizeAppearance(opts.appearance||u.appearance),species=opts.species||u.species||'human',lineage=u.speciesOptions?.lineage||'high',beard=species==='elf'?null:{braid:'05',full:'03',long:'04',none:null}[a.beard];
  const look=humanLook({sex:a.sex,hair:a.hair,beard,ears:species==='elf'?'elf':'human',hairColor:a.hairColor,beardColor:'#171717',skin:u.monster==='ghoul'?'#9aa486':species==='elf'&&lineage==='drow'?'#796789':'#e8bb9b'});
@@ -17,4 +15,4 @@ export function paperDollHTML(u={},opts={}){
  const posed=raw.replace('<g class="dl-lie">','<g class="dl-status-pose"><g class="dl-lie">').replace(/<\/svg>\s*$/,'</g></svg>');
  return posed.replace('class="doll','data-rig data-unit="'+(['fighter','rogue','cleric','wizard'].includes(u.id)?u.id:'')+'" data-species="'+species+'" data-motion="idle" class="portrait fuwa-doll '+statusClasses+' doll').replace(/id="([^"]+)"/g,(_,name)=>`id="${sid}-${name}"`);
 }
-export function playMotion(container,motion,unitId=null){const k=({block:'guard',slash:'slash',shoot:'shoot',walk:'walk',cast:'cast',jump:'hop'})[motion];if(!k)return;container.querySelectorAll('[data-rig]:not(.dl-down)').forEach(el=>{if(unitId&&el.dataset.unit!==unitId)return;if(el.hasAttribute('data-fighter-sprite'))return;const act=el.querySelector('.dl-act');if(!act)return;clearTimeout(el._motionTimer);act.className.baseVal='dl-act';void el.getBoundingClientRect();act.classList.add('act-'+k);act.style.setProperty('--d','0ms');el.dataset.motion=motion;el._motionTimer=setTimeout(()=>{act.classList.remove('act-'+k);el.dataset.motion='idle';},DOLL_DUR[k]||600);});}
+export function playMotion(container,motion,unitId=null){const k=({block:'guard',slash:'slash',shoot:'shoot',walk:'walk',cast:'cast',jump:'hop'})[motion];if(!k)return;container.querySelectorAll('[data-rig]:not(.dl-down)').forEach(el=>{if(unitId&&el.dataset.unit!==unitId)return;const act=el.querySelector('.dl-act');if(!act)return;clearTimeout(el._motionTimer);act.className.baseVal='dl-act';void el.getBoundingClientRect();act.classList.add('act-'+k);act.style.setProperty('--d','0ms');el.dataset.motion=motion;el._motionTimer=setTimeout(()=>{act.classList.remove('act-'+k);el.dataset.motion='idle';},DOLL_DUR[k]||600);});}
