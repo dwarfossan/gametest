@@ -8,7 +8,7 @@ import {plannedSpell,spellIntent,spellChoiceProblem,paintSpellArea} from './spel
 import {bindTooltips,dismissTooltip} from './tooltips.mjs?v=20261016.51';
 import {sheetHTML as characterSheetHTML} from './sheet.mjs?v=20261016.60';
 import {paperDollHTML,playMotion,normalizeAppearance} from './paperdoll.mjs?v=20261016.61';
-import {newDraft,creatorHTML,alignDraftPortrait} from './creator.mjs?v=20261016.60';
+import {newDraft,creatorHTML,alignDraftPortrait,chooseDraftClass} from './creator.mjs?v=20261016.62';
 import {planWalk,advanceWalk} from '../rules/movement.mjs?v=20261016.51';
 import {battleHTML,newBattleUI} from './battle.mjs?v=20261016.57';
 import {combatTest} from '../rules/combat-test.mjs?v=20261016.53';
@@ -80,7 +80,7 @@ function bindCreator(){
  root.querySelectorAll('[data-preview-gear]').forEach(e=>e.onchange=()=>{draft.previewGear=e.value;render();});
  root.querySelectorAll('[data-preview-motion]').forEach(e=>e.onclick=()=>playMotion(root.querySelector('.full-doll'),e.dataset.previewMotion));
  root.querySelectorAll('[data-create-step]').forEach(b=>b.onclick=()=>{draft.step=b.dataset.createStep;render();});
- root.querySelectorAll('[data-create-class]').forEach(b=>b.onclick=()=>{draft.hero=b.dataset.createClass;render();});
+ root.querySelectorAll('[data-create-class]').forEach(b=>b.onclick=()=>{chooseDraftClass(draft,b.dataset.createClass);render();});
  root.querySelectorAll('[data-draft-name],[data-companion]').forEach(e=>e.oninput=()=>{draft.names[e.dataset.companion||draft.hero]=e.value;const n=root.querySelector('[data-live-name]');if(n)n.textContent=draft.names[draft.hero];});
  root.querySelectorAll('[data-zoom]').forEach(b=>b.onclick=()=>{const n=Number(b.dataset.zoom);draft.zoom=n?Math.max(.75,Math.min(1.3,draft.zoom+n*.1)):1;render();});
  root.querySelectorAll('p.note').forEach(p=>{const d=document.createElement('details');d.className='note-bubble';const summary=document.createElement('summary');summary.textContent='說明';const body=document.createElement('div');body.className='bubble-text';body.innerHTML=p.innerHTML;d.append(summary,body);p.replaceWith(d);});

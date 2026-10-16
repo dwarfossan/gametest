@@ -4,6 +4,8 @@ const speciesNames={human:'人類',elf:'精靈',dwarf:'矮人'};
 export function alignDraftPortrait(d){const a=d.appearances[d.hero],current=portraits.find(p=>p.id===d.portraits[d.hero]);if(!current||current.species!==a.species||current.sex!==a.sex)d.portraits[d.hero]=portraits.find(p=>p.species===a.species&&p.sex===a.sex).id;}
 const labels={STR:'力量',DEX:'敏捷',CON:'體魄',INT:'智力',WIS:'感知',CHA:'魅力'};
 const skills={athletics:'運動',intimidation:'威嚇',perception:'察覺',survival:'求生',medicine:'醫藥',history:'歷史',investigation:'調查',acrobatics:'特技',sleight:'巧手',stealth:'隱匿',religion:'宗教',arcana:'奧秘'};
+// Move the protagonist identity with the chosen class; retain the other party identity.
+export function chooseDraftClass(d,id){const previous=d.hero;if(id===previous||!Object.hasOwn(d.appearances,id))return;for(const key of ['names','appearances','portraits']){const value=d[key][previous];d[key][previous]=d[key][id];d[key][id]=value;}d.hero=id;}
 export function newDraft(c){return {hero:'fighter',step:'species',names:Object.fromEntries(c.presets.map(p=>[p.id,p.name])),zoom:1,portraits:Object.fromEntries(c.presets.map(p=>[p.id,defaultPortraitId(p.id)])),appearances:Object.fromEntries(c.presets.map(p=>[p.id,{species:portraitFor({id:p.id}).species,sex:portraitFor({id:p.id}).sex,hair:"01",beard:"braid",hairColor:"#171717"}])),previewGear:"sword-shield"};}
 export function creatorHTML(c,d,units,doll,esc){
  const appearance=d.appearances[d.hero];units.forEach(v=>{v.appearance=d.appearances[v.id];v.portraitId=d.portraits[v.id];});
