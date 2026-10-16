@@ -9,3 +9,16 @@
 @media(prefers-reduced-motion:reduce){.paper-doll .rig-breath{animation:none!important}.paper-doll[data-motion=slash] .slash-trail{animation:none}.paper-doll[data-motion=slash] .rig-arm,.paper-doll[data-motion=slash] .rig-torso,.paper-doll[data-motion=block] .rig-arm,.paper-doll[data-motion=block] .rig-torso{animation-duration:.15s}}
 /* Feet and base are outside the breathing/action groups. */
 .member.active .paper-doll{animation:none!important}.motion-controls{display:flex;gap:5px;flex-wrap:wrap;margin-top:10px}.motion-controls button{font-size:12px;padding:7px 9px}.appearance-controls{display:grid;gap:9px}.appearance-controls label{font-size:12px;display:grid;gap:4px}.appearance-controls label.check{display:flex;align-items:center}.appearance-controls select{width:100%;padding:6px}.motion-controls .help{padding:0}
+
+/* Raster miniature with separate SVG equipment and a stationary tabletop base. */
+.fighter-mini{overflow:visible}.doll.fighter-mini .dl-lie,.doll.fighter-mini .dl-act{transform-box:view-box;transform-origin:90px 176px}
+.fighter-mini .dl-bob{animation:none!important}.fighter-mini .mini-hop.is-hopping{animation:mini-hop .23s ease-out both;animation-delay:var(--hop-delay,0ms);transform-origin:90px 176px}
+@keyframes mini-hop{0%{transform:translateY(0)}45%{transform:translateY(-14px)}100%{transform:translateY(0)}}
+.fighter-mini[data-pose=slash] .dl-act{animation:mini-chop .55s ease-out both}.fighter-mini[data-pose=hurt] .dl-act{animation:mini-hurt .4s ease-out both}.fighter-mini[data-pose=guard] .dl-act{animation:none}
+@keyframes mini-chop{0%{transform:rotate(5deg) translateY(-4px)}55%{transform:rotate(-3deg) translateY(2px)}100%{transform:none}}
+@keyframes mini-hurt{25%{transform:translateX(4px)}55%{transform:translateX(-2px)}100%{transform:none}}
+@media(prefers-reduced-motion:reduce){.fighter-mini .mini-hop.is-hopping,.fighter-mini .dl-act{animation:none!important}}
+
+.fighter-mini.mini-travel{animation:mini-travel .23s linear both;animation-delay:var(--hop-delay,0ms)}
+@keyframes mini-travel{from{transform:translate(var(--step-x,0px),var(--step-y,0px))}to{transform:translate(0,0)}}
+@media(prefers-reduced-motion:reduce){.fighter-mini.mini-travel{animation:none!important}}

@@ -1,0 +1,17 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import * as R from '../js/rules/engine.mjs?v=20261016.51';
+import {combatTest} from '../js/rules/combat-test.mjs?v=20261016.53';
+import {fighterSpriteHTML,fighterSpriteEligible,trackFighterCommand,fighterMotionAt,noteFighterMove} from '../js/ui/fighter-sprite.mjs';
+const c=JSON.parse(fs.readFileSync(new URL('../data/catalog.json',import.meta.url))),s=combatTest(c),u=R.unit(s,'fighter');
+s.units.forEach(v=>{v.control='manual';v.inspiration=false});s.turn=s.order.indexOf('fighter');u.hp=4;u.bonus=1;
+const before=R.copy(s);for(const pose of ['idle','slash','hurt','item','guard']){const html=fighterSpriteHTML(u,{},pose,'healingPotion');assert(html.includes('data-pose="'+pose+'"'));assert(html.includes('data-wood-base'));assert(html.includes('data-grip="main"'));}assert.deepEqual(s,before);
+assert(fighterSpriteEligible(u));assert(!fighterSpriteEligible({...u,appearance:{sex:'female'}}));assert(!fighterSpriteEligible({...u,grips:{0:2}}));assert(!fighterSpriteEligible({...u,weapons:['longbow']}));
+let r=trackFighterCommand(s,{kind:'item',actor:u.id,item:'healingPotion',target:u.id},()=>R.dispatch(s,c,{kind:'item',actor:u.id,item:'healingPotion',target:u.id}));assert(r.ok,r.error);assert.equal(fighterMotionAt(s).pose,'item');assert.equal(u.inventory.healingPotion,2);assert.equal(fighterMotionAt(s,Date.now()+10000),null);
+const paused=combatTest(c),p=R.unit(paused,'fighter');paused.turn=paused.order.indexOf('fighter');paused.inspirationPrompts=true;paused.units.forEach(v=>v.control='manual');p.hp=3;p.inspiration=true;
+r=trackFighterCommand(paused,{kind:'item',actor:p.id,item:'healingPotion',target:p.id},()=>R.dispatch(paused,c,{kind:'item',actor:p.id,item:'healingPotion',target:p.id}));assert(r.ok);assert.equal(paused.pending.kind,'inspiration');assert.equal(fighterMotionAt(paused),null);assert.equal(p.inventory.healingPotion,3);
+trackFighterCommand(paused,{kind:'answer'},()=>R.answer(paused,c,false));assert.equal(fighterMotionAt(paused).pose,'item');assert.equal(p.inventory.healingPotion,2);
+const pos={x:p.x,y:p.y};p.x++;noteFighterMove(paused,pos);assert.equal(fighterMotionAt(paused).pose,'hop');assert.equal(fighterMotionAt(paused,Date.now()+250),null);
+console.log('✓ 戰士圖像：五姿勢唯讀、握點／木底盤、單手適用範圍、道具已提交才演出、激勵暫停不提前播放、移動事件期限');
+s.page='explore';const restored=R.load(R.save(s),c);assert.equal(fighterMotionAt(restored),null);const down={...u,prone:true};const html=fighterSpriteHTML(down,{face:1});assert(html.includes('dl-prone'));assert(html.indexOf('data-wood-base')<html.indexOf('class="dl-lie"'));assert(html.includes('translate(180 0) scale(-1 1)'));
+console.log('✓ 載入不回放、朝向整體鏡像、倒地身體與木底盤分層');
