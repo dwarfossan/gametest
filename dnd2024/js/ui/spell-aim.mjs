@@ -1,4 +1,4 @@
-import * as R from '../rules/engine.mjs?v=20261016.49';
+import * as R from '../rules/engine.mjs?v=20261016.50';
 import {areaKind} from '../rules/spell-targets.mjs?v=20261015.35';
 export const plannedSpell=sp=>areaKind(sp)||['bless','missile'].includes(sp?.kind);
 export const spellIntent=(u,mode)=>({actor:u.id,kind:mode.item?'item':mode.prepare?'ready':'spell',...(mode.item?{item:mode.item}:{}),...(mode.prepare?{response:'spell',trigger:mode.trigger}:{}),spell:mode.spell,...(mode.aim?{aim:mode.aim}:{}),...(['bless','missile'].includes(mode.type)?{targets:mode.targets||[],target:mode.targets?.[0]}:{})});

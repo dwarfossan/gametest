@@ -1,4 +1,4 @@
-import {hasCondition} from './conditions.mjs?v=20261016.49';
+import {hasCondition} from './conditions.mjs?v=20261016.50';
 export const items={healingPotion:{name:'治療藥水',weight:.5,description:'附贈動作：自己飲用，或餵給五呎內生物，恢復 2d4＋2 生命。'},net:{name:'網子',weight:3,description:'取代一次攻擊：投向十五呎內可見生物。敏捷豁免 DC＝8＋敏捷調整值＋熟練加值，失敗陷入束縛；巨型以上自動成功。目標或五呎內生物可花主要動作做 DC 10 運動檢定解除。網子 AC 10、HP 5，免疫鈍擊、毒素、心靈傷害。'}};
 export const inventory=u=>u.inventory||{};
 export const restrained=u=>hasCondition(u,'restrained');
@@ -26,4 +26,15 @@ Object.assign(items,{
  sicknessScroll:{name:'致病射線卷軸',weight:0,spell:'rayofsickness',description:'主要動作；法師可用。遠程法術攻擊＋5，命中 2d8 毒素傷害及中毒，至施法者下回合結束。消耗卷軸，不耗法術位。'},
  colorScroll:{name:'七彩噴射卷軸',weight:0,spell:'colorspray',description:'主要動作；法師可用。十五呎錐形，體質豁免 DC 13，失敗目盲至施法者下回合結束；會波及友軍。消耗卷軸，不耗法術位。'},
  restorationScroll:{name:'次級復原術卷軸',weight:0,spell:'lesserrestoration',description:'附贈動作；牧師可用。五呎內選一種解除：目盲、耳聾、麻痺或中毒。一等牧師須做感知檢定 DC 12，無論成敗均消耗卷軸，不耗法術位。需要空手與言語、姿勢。'}
+});
+
+Object.assign(items,{
+ holdScroll:{name:'定身人類卷軸',spell:'holdperson',weight:0,description:'法師或牧師；主要動作，六十呎可見類人生物，感知 DC 13；失敗麻痺、回合結束重做。專注一分鐘。越級檢定 DC 12。'},
+ blindScroll:{name:'目盲／耳聾卷軸',spell:'blindnessdeafness',weight:0,description:'法師或牧師；先選目盲或耳聾，再選一百二十呎可見敵人，體質 DC 13；失敗一分鐘，回合結束重做。越級檢定 DC 12。'},
+ invisibleScroll:{name:'隱形術卷軸',spell:'invisibility',weight:0,description:'法師；接觸隊友，專注一小時；攻擊擲骰、造成傷害或施法後解除。越級檢定 DC 12。'},
+ laughterScroll:{name:'狂笑術卷軸',spell:'hideouslaughter',weight:0,description:'法師；三十呎可見敵人，感知 DC 13，失敗倒地並失能。專注一分鐘；回合結束或受傷重做，受傷時優勢。解除後仍倒地。'},
+ poisonWardScroll:{name:'防護毒素卷軸',spell:'protectionfrompoison',weight:0,description:'牧師；接觸隊友解除中毒，一小時毒素抗性，避免／解除中毒豁免優勢。越級檢定 DC 12。不提供中毒免疫。'},
+ energyWardScroll:{name:'防護能量卷軸',spell:'protectionfromenergy',weight:0,description:'法師或牧師；接觸隊友，先選強酸、寒冷、火焰、閃電或雷鳴抗性。專注一小時；越級檢定 DC 13。'},
+ dispelScroll:{name:'解除魔法卷軸',spell:'dispelmagic',weight:0,description:'法師或牧師；一百二十呎內生物身上三環以下持續法術解除。非魔法狀態、蛛網與裝備不會解除。越級檢定 DC 13。'},
+ fireRing:{name:'火焰抗性戒指',weight:0,passive:true,attunement:true,damageDefenses:[{trait:'resistances',types:['fire']}],description:'裝備且已同調時提供火焰抗性。測試場配置；只放背包不生效，同類抗性不疊加。'}
 });

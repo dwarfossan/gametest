@@ -1,5 +1,5 @@
-import {incapacitated,entries} from './conditions.mjs?v=20261016.49';
-import {heldWeapons,heldHands} from './equipment.mjs?v=20261014.34';
+import {incapacitated,entries} from './conditions.mjs?v=20261016.50';
+import {heldWeapons,heldHands} from './equipment.mjs?v=20261016.50';
 export const sizeRank=u=>({tiny:0,small:1,medium:2,large:3,huge:4,gargantuan:5}[u.size||'medium']??2);
 export const grapplers=(s,u)=>[...(u.grapples||[]),...entries(u,'grappled').map(v=>({actor:v.source,dc:v.dc||10}))].filter((g,i,list)=>list.findIndex(v=>v.actor===g.actor)===i).filter(g=>{if(u.conditionImmunities?.includes('grappled'))return false;const p=s.units.find(v=>v.id===g.actor);return p&&p.hp>0&&!p.dead&&!incapacitated(p)&&Math.max(Math.abs(p.x-u.x),Math.abs(p.y-u.y),Math.ceil(Math.abs((p.z||0)-(u.z||0))/5))<=1;});
 export const grabbed=(s,u)=>grapplers(s,u).length>0;

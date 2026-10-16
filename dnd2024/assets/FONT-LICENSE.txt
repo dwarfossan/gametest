@@ -12,3 +12,5 @@ ui-cjk.woff2: Noto Sans TC Traditional Chinese coverage, distributed by @fontsou
 2026-10-16: state-font.woff is a supplementary subset of Noto Sans TC 400, from @fontsource/noto-sans-tc 5.3.1 (SIL OFL). It adds the currently used UI CJK glyphs missing from the previous three subsets.
 
 2026-10-16: scroll-font.woff adds six UI glyphs (卷噴彩病論軸), subset and merged from Noto Sans TC 400, @fontsource/noto-sans-tc 5.3.1, under the same SIL OFL.
+
+2026-10-16: content-font.woff adds battle content UI glyphs, subset and merged from Noto Sans TC 400, @fontsource/noto-sans-tc 5.3.1, under SIL OFL.

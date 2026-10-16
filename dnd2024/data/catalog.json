@@ -199,6 +199,69 @@
       "implementationStatus": "prototype",
       "twoHanded": true,
       "damageType": "piercing"
+    },
+    "giantSpiderBite": {
+      "name": "巨蛛咬擊",
+      "stat": "DEX",
+      "dice": [
+        1,
+        8
+      ],
+      "reach": 1,
+      "damageType": "piercing",
+      "natural": true,
+      "extraDamage": [
+        {
+          "dice": [
+            2,
+            6
+          ],
+          "type": "poison"
+        }
+      ]
+    },
+    "ghoulBite": {
+      "name": "食屍鬼咬擊",
+      "stat": "DEX",
+      "dice": [
+        1,
+        6
+      ],
+      "reach": 1,
+      "damageType": "piercing",
+      "natural": true,
+      "extraDamage": [
+        {
+          "dice": [
+            1,
+            6
+          ],
+          "type": "necrotic"
+        }
+      ]
+    },
+    "ghoulClaw": {
+      "name": "麻痺爪擊",
+      "stat": "DEX",
+      "dice": [
+        1,
+        4
+      ],
+      "reach": 1,
+      "damageType": "slashing",
+      "natural": true,
+      "onHit": {
+        "condition": "paralyzed",
+        "save": "CON",
+        "dc": 10,
+        "until": "targetNextEnd",
+        "exceptTypes": [
+          "undead"
+        ],
+        "exceptSpecies": [
+          "elf"
+        ]
+      }
     }
   },
   "spells": {
@@ -458,6 +521,138 @@
         "poisoned"
       ],
       "description": "附贈動作接觸一名生物，選擇解除一種：目盲、耳聾、麻痺或中毒。不恢復生命，也不解除其他狀態。",
+      "sourceDocument": "SRD 5.2.1",
+      "implementationStatus": "prototype"
+    },
+    "holdperson": {
+      "name": "定身人類",
+      "level": 2,
+      "kind": "condition",
+      "range": 12,
+      "components": "VSM",
+      "classes": [
+        "wizard",
+        "cleric"
+      ],
+      "description": "可見類人生物做感知豁免；失敗麻痺，回合結束重做豁免。專注一分鐘。",
+      "sourceDocument": "SRD 5.2.1",
+      "implementationStatus": "prototype",
+      "save": "WIS",
+      "condition": "paralyzed",
+      "concentration": true,
+      "minutes": 1,
+      "repeatSave": true,
+      "requiresSight": true,
+      "creatureType": "humanoid"
+    },
+    "blindnessdeafness": {
+      "name": "目盲／耳聾",
+      "level": 2,
+      "kind": "condition",
+      "range": 24,
+      "components": "V",
+      "classes": [
+        "wizard",
+        "cleric"
+      ],
+      "description": "選擇目盲或耳聾；可見目標做體質豁免，回合結束重做豁免。一分鐘，不需專注。",
+      "sourceDocument": "SRD 5.2.1",
+      "implementationStatus": "prototype",
+      "save": "CON",
+      "choices": [
+        "blinded",
+        "deafened"
+      ],
+      "minutes": 1,
+      "repeatSave": true,
+      "requiresSight": true
+    },
+    "invisibility": {
+      "name": "隱形術",
+      "level": 2,
+      "kind": "conditionBuff",
+      "range": 1,
+      "components": "VSM",
+      "classes": [
+        "wizard"
+      ],
+      "description": "接觸生物獲得隱形，專注一小時；目標攻擊擲骰、造成傷害或施法後解除。",
+      "sourceDocument": "SRD 5.2.1",
+      "implementationStatus": "prototype",
+      "condition": "invisible",
+      "concentration": true,
+      "minutes": 60
+    },
+    "hideouslaughter": {
+      "name": "狂笑術",
+      "level": 1,
+      "kind": "condition",
+      "range": 6,
+      "components": "VSM",
+      "classes": [
+        "wizard"
+      ],
+      "description": "可見生物感知豁免，失敗倒地並失能；回合結束或受傷再豁免，受傷時有優勢。成功解除失能，仍須自行起身。",
+      "sourceDocument": "SRD 5.2.1",
+      "implementationStatus": "prototype",
+      "save": "WIS",
+      "condition": "incapacitated",
+      "concentration": true,
+      "minutes": 1,
+      "repeatSave": true,
+      "damageSave": true,
+      "prone": true,
+      "requiresSight": true
+    },
+    "protectionfrompoison": {
+      "name": "防護毒素",
+      "level": 2,
+      "kind": "defense",
+      "range": 1,
+      "components": "VS",
+      "classes": [
+        "cleric"
+      ],
+      "description": "接觸生物解除中毒，一小時內有毒素抗性，避免或解除中毒的豁免有優勢；不是中毒免疫。",
+      "sourceDocument": "SRD 5.2.1",
+      "implementationStatus": "prototype",
+      "minutes": 60,
+      "defense": "poison"
+    },
+    "protectionfromenergy": {
+      "name": "防護能量",
+      "level": 3,
+      "kind": "defense",
+      "range": 1,
+      "components": "VS",
+      "classes": [
+        "cleric",
+        "wizard"
+      ],
+      "description": "接觸自願隊友，選強酸、寒冷、火焰、閃電或雷鳴抗性，專注一小時。",
+      "sourceDocument": "SRD 5.2.1",
+      "implementationStatus": "prototype",
+      "minutes": 60,
+      "concentration": true,
+      "choices": [
+        "acid",
+        "cold",
+        "fire",
+        "lightning",
+        "thunder"
+      ]
+    },
+    "dispelmagic": {
+      "name": "解除魔法",
+      "level": 3,
+      "kind": "dispel",
+      "range": 24,
+      "components": "VS",
+      "classes": [
+        "wizard",
+        "cleric"
+      ],
+      "description": "指定生物身上持續中的法術：三環以下解除；更高環逐項做施法屬性檢定。非魔法狀態不會解除。",
       "sourceDocument": "SRD 5.2.1",
       "implementationStatus": "prototype"
     }
@@ -813,5 +1008,68 @@
         2
       ]
     ]
+  },
+  "monsters": {
+    "giantspider": {
+      "name": "巨蛛",
+      "creatureType": "beast",
+      "size": "large",
+      "hp": 26,
+      "naturalAC": 14,
+      "scores": {
+        "STR": 14,
+        "DEX": 16,
+        "CON": 12,
+        "INT": 2,
+        "WIS": 11,
+        "CHA": 4
+      },
+      "speed": 30,
+      "darkvision": 60,
+      "attackBonus": 5,
+      "weapons": [
+        "giantSpiderBite"
+      ],
+      "abilities": [
+        "web"
+      ],
+      "spiderClimb": true,
+      "description": "咬擊：穿刺＋毒素。蛛網：六十呎內敏捷 DC 13，失敗束縛；需破壞蛛網解除。此場地只測地表戰鬥，不模擬倒掛天花板。",
+      "climbSpeed": 30
+    },
+    "ghoul": {
+      "name": "食屍鬼",
+      "creatureType": "undead",
+      "size": "medium",
+      "hp": 22,
+      "naturalAC": 12,
+      "scores": {
+        "STR": 13,
+        "DEX": 15,
+        "CON": 10,
+        "INT": 7,
+        "WIS": 10,
+        "CHA": 6
+      },
+      "speed": 30,
+      "darkvision": 60,
+      "attackBonus": 4,
+      "weapons": [
+        "ghoulBite",
+        "ghoulClaw"
+      ],
+      "abilities": [
+        "multiattack"
+      ],
+      "damageImmunities": [
+        "poison"
+      ],
+      "conditionImmunities": [
+        "charmed",
+        "exhaustion",
+        "poisoned"
+      ],
+      "description": "連咬兩次，每次穿刺＋黯蝕。爪擊另選為一個主要動作；非精靈、非不死目標體質 DC 10，失敗麻痺至目標下回合結束。"
+    }
   }
 }
