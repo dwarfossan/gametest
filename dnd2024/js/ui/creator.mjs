@@ -1,4 +1,4 @@
-import {portraitHTML,portraitPickerHTML,defaultPortraitId} from './portraits.mjs?v=20261016.57';
+import {portraitHTML,portraitPickerHTML,defaultPortraitId} from './portraits.mjs?v=20261016.58';
 const steps=[['identity','身分'],['portrait','頭像'],['species','種族'],['class','職業'],['background','背景'],['scores','屬性'],['skills','技能'],['spells','法術'],['appearance','外觀']];
 const labels={STR:'力量',DEX:'敏捷',CON:'體魄',INT:'智力',WIS:'感知',CHA:'魅力'};
 const skills={athletics:'運動',intimidation:'威嚇',perception:'察覺',survival:'求生',medicine:'醫藥',history:'歷史',investigation:'調查',acrobatics:'特技',sleight:'巧手',stealth:'隱匿',religion:'宗教',arcana:'奧秘'};

@@ -1,4 +1,4 @@
-import {portraitHTML,validPortraitId} from './portraits.mjs?v=20261016.57';
+import {portraitHTML,validPortraitId} from './portraits.mjs?v=20261016.58';
 import {items} from '../rules/items.mjs?v=20261016.51';
 import {bindStatusFX} from './status-view.mjs?v=20261016.51';
 import {trackStatus} from '../rules/status-events.mjs?v=20261016.51';
@@ -8,7 +8,7 @@ import {plannedSpell,spellIntent,spellChoiceProblem,paintSpellArea} from './spel
 import {bindTooltips,dismissTooltip} from './tooltips.mjs?v=20261016.51';
 import {sheetHTML as characterSheetHTML} from './sheet.mjs?v=20261016.57';
 import {paperDollHTML,playMotion,normalizeAppearance} from './paperdoll.mjs?v=20261016.56';
-import {newDraft,creatorHTML} from './creator.mjs?v=20261016.57';
+import {newDraft,creatorHTML} from './creator.mjs?v=20261016.58';
 import {planWalk,advanceWalk} from '../rules/movement.mjs?v=20261016.51';
 import {battleHTML,newBattleUI} from './battle.mjs?v=20261016.57';
 import {combatTest} from '../rules/combat-test.mjs?v=20261016.53';

@@ -1,5 +1,5 @@
 {
-  "version": 3,
+  "version": 4,
   "width": 512,
   "height": 512,
   "thumbnailSize": 128,
@@ -10,7 +10,8 @@
       "sex": "female",
       "lineage": null,
       "src": "portraits/dwarf-female-01.webp",
-      "thumbnail": "thumbs/dwarf-female-01.webp"
+      "thumbnail": "thumbs/dwarf-female-01.webp",
+      "label": "01"
     },
     {
       "id": "dwarf-female-02",
@@ -18,7 +19,8 @@
       "sex": "female",
       "lineage": null,
       "src": "portraits/dwarf-female-02.webp",
-      "thumbnail": "thumbs/dwarf-female-02.webp"
+      "thumbnail": "thumbs/dwarf-female-02.webp",
+      "label": "02"
     },
     {
       "id": "dwarf-male-01",
@@ -26,7 +28,8 @@
       "sex": "male",
       "lineage": null,
       "src": "portraits/dwarf-male-01.webp",
-      "thumbnail": "thumbs/dwarf-male-01.webp"
+      "thumbnail": "thumbs/dwarf-male-01.webp",
+      "label": "03"
     },
     {
       "id": "dwarf-male-02",
@@ -34,7 +37,8 @@
       "sex": "male",
       "lineage": null,
       "src": "portraits/dwarf-male-02.webp",
-      "thumbnail": "thumbs/dwarf-male-02.webp"
+      "thumbnail": "thumbs/dwarf-male-02.webp",
+      "label": "04"
     },
     {
       "id": "elf-female-01",
@@ -42,7 +46,8 @@
       "sex": "female",
       "lineage": null,
       "src": "portraits/elf-female-01.webp",
-      "thumbnail": "thumbs/elf-female-01.webp"
+      "thumbnail": "thumbs/elf-female-01.webp",
+      "label": "05"
     },
     {
       "id": "elf-female-02",
@@ -50,7 +55,8 @@
       "sex": "female",
       "lineage": "drow",
       "src": "portraits/elf-female-02.webp",
-      "thumbnail": "thumbs/elf-female-02.webp"
+      "thumbnail": "thumbs/elf-female-02.webp",
+      "label": "06"
     },
     {
       "id": "elf-male-01",
@@ -58,7 +64,8 @@
       "sex": "male",
       "lineage": null,
       "src": "portraits/elf-male-01.webp",
-      "thumbnail": "thumbs/elf-male-01.webp"
+      "thumbnail": "thumbs/elf-male-01.webp",
+      "label": "07"
     },
     {
       "id": "elf-male-02",
@@ -66,7 +73,8 @@
       "sex": "male",
       "lineage": null,
       "src": "portraits/elf-male-02.webp",
-      "thumbnail": "thumbs/elf-male-02.webp"
+      "thumbnail": "thumbs/elf-male-02.webp",
+      "label": "08"
     },
     {
       "id": "human-female-01",
@@ -74,7 +82,8 @@
       "sex": "female",
       "lineage": null,
       "src": "portraits/human-female-01.webp",
-      "thumbnail": "thumbs/human-female-01.webp"
+      "thumbnail": "thumbs/human-female-01.webp",
+      "label": "09"
     },
     {
       "id": "human-female-02",
@@ -82,7 +91,8 @@
       "sex": "female",
       "lineage": null,
       "src": "portraits/human-female-02.webp",
-      "thumbnail": "thumbs/human-female-02.webp"
+      "thumbnail": "thumbs/human-female-02.webp",
+      "label": "10"
     },
     {
       "id": "human-male-01",
@@ -90,7 +100,8 @@
       "sex": "male",
       "lineage": null,
       "src": "portraits/human-male-01.webp",
-      "thumbnail": "thumbs/human-male-01.webp"
+      "thumbnail": "thumbs/human-male-01.webp",
+      "label": "11"
     },
     {
       "id": "human-male-02",
@@ -98,7 +109,134 @@
       "sex": "male",
       "lineage": null,
       "src": "portraits/human-male-02.webp",
-      "thumbnail": "thumbs/human-male-02.webp"
+      "thumbnail": "thumbs/human-male-02.webp",
+      "label": "12"
+    },
+    {
+      "id": "extra-human-male-01",
+      "species": "human",
+      "sex": "male",
+      "lineage": null,
+      "src": "portraits/extra-human-male-01.webp",
+      "thumbnail": "thumbs/extra-human-male-01.webp",
+      "label": "13"
+    },
+    {
+      "id": "extra-human-male-02",
+      "species": "human",
+      "sex": "male",
+      "lineage": null,
+      "src": "portraits/extra-human-male-02.webp",
+      "thumbnail": "thumbs/extra-human-male-02.webp",
+      "label": "14"
+    },
+    {
+      "id": "extra-human-female-01",
+      "species": "human",
+      "sex": "female",
+      "lineage": null,
+      "src": "portraits/extra-human-female-01.webp",
+      "thumbnail": "thumbs/extra-human-female-01.webp",
+      "label": "15"
+    },
+    {
+      "id": "extra-human-female-02",
+      "species": "human",
+      "sex": "female",
+      "lineage": null,
+      "src": "portraits/extra-human-female-02.webp",
+      "thumbnail": "thumbs/extra-human-female-02.webp",
+      "label": "16"
+    },
+    {
+      "id": "extra-elf-male-01",
+      "species": "elf",
+      "sex": "male",
+      "lineage": null,
+      "src": "portraits/extra-elf-male-01.webp",
+      "thumbnail": "thumbs/extra-elf-male-01.webp",
+      "label": "17"
+    },
+    {
+      "id": "extra-elf-male-02",
+      "species": "elf",
+      "sex": "male",
+      "lineage": null,
+      "src": "portraits/extra-elf-male-02.webp",
+      "thumbnail": "thumbs/extra-elf-male-02.webp",
+      "label": "18"
+    },
+    {
+      "id": "extra-elf-female-01",
+      "species": "elf",
+      "sex": "female",
+      "lineage": null,
+      "src": "portraits/extra-elf-female-01.webp",
+      "thumbnail": "thumbs/extra-elf-female-01.webp",
+      "label": "19"
+    },
+    {
+      "id": "extra-elf-female-02",
+      "species": "elf",
+      "sex": "female",
+      "lineage": "drow",
+      "src": "portraits/extra-elf-female-02.webp",
+      "thumbnail": "thumbs/extra-elf-female-02.webp",
+      "label": "20"
+    },
+    {
+      "id": "extra-dwarf-male-01",
+      "species": "dwarf",
+      "sex": "male",
+      "lineage": null,
+      "src": "portraits/extra-dwarf-male-01.webp",
+      "thumbnail": "thumbs/extra-dwarf-male-01.webp",
+      "label": "21"
+    },
+    {
+      "id": "extra-dwarf-male-02",
+      "species": "dwarf",
+      "sex": "male",
+      "lineage": null,
+      "src": "portraits/extra-dwarf-male-02.webp",
+      "thumbnail": "thumbs/extra-dwarf-male-02.webp",
+      "label": "22"
+    },
+    {
+      "id": "extra-dwarf-female-01",
+      "species": "dwarf",
+      "sex": "female",
+      "lineage": null,
+      "src": "portraits/extra-dwarf-female-01.webp",
+      "thumbnail": "thumbs/extra-dwarf-female-01.webp",
+      "label": "23"
+    },
+    {
+      "id": "extra-dwarf-female-02",
+      "species": "dwarf",
+      "sex": "female",
+      "lineage": null,
+      "src": "portraits/extra-dwarf-female-02.webp",
+      "thumbnail": "thumbs/extra-dwarf-female-02.webp",
+      "label": "24"
+    },
+    {
+      "id": "extra-elf-male-alt",
+      "species": "elf",
+      "sex": "male",
+      "lineage": null,
+      "src": "portraits/extra-elf-male-alt.webp",
+      "thumbnail": "thumbs/extra-elf-male-alt.webp",
+      "label": "25"
+    },
+    {
+      "id": "extra-dwarf-male-alt",
+      "species": "dwarf",
+      "sex": "male",
+      "lineage": null,
+      "src": "portraits/extra-dwarf-male-alt.webp",
+      "thumbnail": "thumbs/extra-dwarf-male-alt.webp",
+      "label": "26"
     }
   ]
 }
