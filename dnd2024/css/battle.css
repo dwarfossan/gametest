@@ -130,3 +130,20 @@
 
 .combat-stage:has(.item-dock) .combat-logstrip{display:none}
 .combat-info{top:8px;max-height:calc(100% - 16px);overflow:auto;box-sizing:border-box}
+
+/* Visual map themes do not add collision, visibility or resource effects. */
+.combat-tile>svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.combat-tile.can-move>svg,.combat-tile.can-target>svg,.combat-tile.current>svg,.combat-tile.spell-area>svg,.combat-tile.spell-selected>svg{opacity:.38}
+.map-scenery{position:absolute;pointer-events:none;overflow:visible}
+.map-theme-forest{background:radial-gradient(ellipse at 45% 35%,#64765a,#233e32 80%)}
+.map-theme-cave{background:radial-gradient(ellipse at 45% 35%,#49475b,#171e2d 80%)}
+.map-theme-ruins{background:radial-gradient(ellipse at 45% 35%,#7d7766,#333d36 80%)}
+.map-theme-picker{padding:7px 0 10px;border-bottom:1px solid #64715b;margin-bottom:7px;font-size:12px}
+.map-theme-picker>div{display:flex;gap:5px;margin:7px 0}.map-theme-picker button{min-height:34px;padding:5px 10px;font-size:13px}
+.map-theme-picker button.selected{background:#75613e;border-color:#ead098}.map-theme-picker small{font-size:10px;color:#c4cdb9;line-height:1.5}
+
+@font-face{font-family:ThemeTC;src:url('../assets/theme-font.woff?v=20261016.54') format('woff');font-display:swap}.map-theme-picker,.map-tools{font-family:GameTC,CardTC,PossessionTC,StateTC,ScrollTC,ContentTC,ThemeTC,system-ui,sans-serif}
+.combat-tile.heavy-obscured>svg,.combat-tile.light-obscured>svg{opacity:.35}
+.combat-stage[class*="map-theme-"] .combat-tile.elevated>svg{display:none}
+.combat-stage[class*="map-theme-"] .combat-tile.elevated:not(.can-move):not(.can-target):not(.current):not(.spell-area){background:transparent;box-shadow:none}
+.combat-stage[class*="map-theme-"] .combat-tile.elevated.can-move{background:#79b2d180}
