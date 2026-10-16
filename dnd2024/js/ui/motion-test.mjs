@@ -7,8 +7,8 @@ let breath=true,paused=false,current='idle';
 const labels={idle:'待機',slash:'揮砍',block:'格擋',shoot:'射擊',cast:'施法',jump:'跳躍',hurt:'受擊'};
 function render(){
  const r=rigs[$('body').value],img='<image href="./assets/paperdoll/source.png" width="1536" height="1024"/>';
- const clip=(name,points)=>`<clipPath id="${name}"><polygon points="${points}"/></clipPath>`;
- const part=(name)=>`<g clip-path="url(#${name})">${img}</g>`;
+ const clip=(name,points)=>`<clipPath id="clip-${name}"><polygon points="${points}"/></clipPath>`;
+ const part=(name)=>`<g clip-path="url(#clip-${name})">${img}</g>`;
  stage.innerHTML=`<svg viewBox="${r.view}" role="img" aria-label="原圖紙娃娃動作預覽"><defs>${['left','right','torso','lower'].map(k=>clip(k,r[k])).join('')}</defs><g class="facing"><g class="lower">${part('lower')}</g><g class="upper"><g class="torso">${part('torso')}</g><g class="arm left" style="transform-origin:${r.lp[0]}px ${r.lp[1]}px">${part('left')}</g><g class="arm right" style="transform-origin:${r.rp[0]}px ${r.rp[1]}px">${part('right')}</g></g></g></svg>`;
  stage.classList.toggle('mirror',$('face').value==='1');stage.classList.toggle('still',!breath);stage.classList.toggle('paused',paused);setMotion(current);update();
 }
