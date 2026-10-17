@@ -1,4 +1,4 @@
-import {themedStructure} from './map-themes.mjs?v=20261016.54';
+import {themedStructure} from './map-themes.mjs?v=20261017.63';
 import {tileTerrain,isGap,heightAt,terrainDescription} from '../rules/terrain.mjs?v=20261014.32';
 export const lift=p=>Math.max(-96,Math.min(160,(p.z||0)*3.2));
 export function terrainArt(c,x,y,theme=null){const at={x,y},t=tileTerrain(c,at),wall=c.map.walls.some(([a,b])=>a===x&&b===y),gap=isGap(c,at),rubble=(c.map.difficult||[]).some(([a,b])=>a===x&&b===y);if(!t&&!wall&&!gap&&!rubble)return '';const height=Math.max(0,heightAt(c,at)),h=height*3.2;let art='';if(gap)art='<path d="M0 16L32 0L64 16L32 33Z" fill="#081519" stroke="#8a9384" stroke-width="2"/><path d="M4 17L32 4L60 17L32 29Z" fill="#182c30"/><path d="M9 18L25 10L35 19L51 16L34 29L22 21Z" fill="#02090c"/><path d="M9 7L16 12M48 23L56 27M27 1L30 8" stroke="#bcc1a0" stroke-width="2"/>';
@@ -8,4 +8,4 @@ art+=rock?`<path d="M11 ${19-h}L18 ${26-h}L14 15M47 ${25-h}L42 ${h>20?4:14}L53 1
 if(t?.parapet)art+=`<path d="M2 ${15-h}L32 ${30-h}L62 ${15-h}" fill="none" stroke="#d0c59e" stroke-width="4"/>`;
 }else art='<path d="M10 15L17 10L24 14L20 21L12 20ZM28 21L36 14L44 19L41 27L33 29ZM40 9L47 5L54 10L50 15L43 14Z" fill="#9f9b82" stroke="#48594b"/><path d="M16 11L19 18M35 16L37 24M47 7L48 13" stroke="#c5bba0"/>';
 if(theme&&(t||wall)&&!gap)art=themedStructure(theme,h,{rock:t?.surface==='rock',parapet:t?.parapet,x,y});
-return `<svg class="terrain-art ${wall?'wall-art':''}" aria-hidden="true" data-terrain-tip data-tooltip="${terrainDescription(c,at).replaceAll('&','&amp;').replaceAll('\"','&quot;')}" data-cell="${x},${y}" style="left:${(y-x+c.map.width-1)*32}px;top:${(x+y)*16+42-h}px;z-index:${height>0?(x+y)*2+1:1}" width="64" height="${33+h}" viewBox="0 ${-h} 64 ${33+h}">${art}</svg>`;}
+return `<svg class="terrain-art ${wall?'wall-art':''}" aria-hidden="true" data-terrain-tip data-tooltip="${terrainDescription(c,at).replaceAll('&','&amp;').replaceAll('\"','&quot;')}" data-cell="${x},${y}" style="left:${(x-y+c.map.height-1)*32}px;top:${(x+y)*16+42-h}px;z-index:${height>0?(x+y)*2+1:1}" width="64" height="${33+h}" viewBox="0 ${-h} 64 ${33+h}">${art}</svg>`;}
